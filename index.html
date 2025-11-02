@@ -982,11 +982,19 @@
                 if (!isDoorHidden) {
                     doorContainer.classList.add('hidden');
                     isDoorHidden = true;
+                    // Remove scroll event so door never shows again
+                    window.removeEventListener('scroll', handleScroll);
+                    // Remove whitespace above main content
+                    document.getElementById('main-content').style.marginTop = '0';
+                    // Scroll to top of main content
+                    window.scrollTo({ top: 0, behavior: 'instant' });
                 }
             } else {
+                // Do nothing, keep door hidden if already hidden
                 if (isDoorHidden) {
-                    doorContainer.classList.remove('hidden');
-                    isDoorHidden = false;
+                    // Don't show the door again
+                    // doorContainer.classList.remove('hidden');
+                    // isDoorHidden = false;
                 }
             }
         }
@@ -1044,3 +1052,4 @@
         </script>
 </body>
 </html>
+``` 
