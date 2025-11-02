@@ -71,7 +71,7 @@
             border-top-right-radius: 130px;
             background-color: rgba(255, 255, 255, 0.397);
             box-shadow: 
-                inset 0 0 30px rgba(    255, 255, 255, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.5),
                 0 0 50px rgba(255, 255, 255, 0.3);
         }
 
@@ -241,6 +241,40 @@
             transition: opacity 0.3s ease;
         }
 
+        /* Simple white circle light source */
+        .side-light {
+            position: absolute;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 50px 20px rgba(255,255,255,0.45), 0 0 24px 8px rgba(255,255,255,0.7);
+            z-index: 30;
+            pointer-events: none;
+        }
+
+         .side-light-1 {
+            left: -500px;
+            top: -250px;
+            width: 12px;
+            height: 12px;
+        }
+
+        .side-light-2 {
+            right: -400px;
+            top: -350px;
+            width: 25px;
+            height: 25px;
+        }
+    
+        
+        .side-light-3{
+            right: -300px;
+            top: 350px;
+            width: 8px;
+            height: 8px;
+        }
+
+
         /* Magical particles */
         .particle {
             position: absolute;
@@ -303,22 +337,6 @@
             height: 15px;
             background: hsl(var(--door-shadow));
             clip-path: polygon(0 0, 100% 0, 50% 100%);
-        }
-
-        /* Peephole */
-        .peephole {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: 132px;
-            top: 30%;
-            background: radial-gradient(circle at 30% 30%,
-                hsl(var(--door-handle)),
-                hsl(var(--door-handle) / 0.6));
-            border-radius: 50%;
-            box-shadow: 
-                inset -1px -1px 2px #00000066,
-                0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* Main Content */
@@ -630,7 +648,10 @@
         <div id="door-wrapper">
             <!-- Door Frame -->
             <div class="door-frame"></div>
-            
+            <!-- Simple white light source -->
+            <div class="side-light side-light-1"></div>
+            <div class="side-light side-light-2"></div>
+            <div class="side-light side-light-3"></div>
             <!-- Light from behind door -->
             <div class="door-light" id="door-light"></div>
             
@@ -639,9 +660,6 @@
                 <!-- Door panels -->
                 <div class="door-panel panel-top"></div>
                 <div class="door-panel panel-bottom"></div>
-                
-                <!-- Peephole -->
-                <div class="peephole"></div>
                 
                 <!-- Door Handle -->
                 <div class="door-handle" id="door-handle">
