@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annika Cagitz</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica', serif;
+            overflow-x: hidden;
+            background-color: white;
+
+        }
+
+        /* Main Content */
+        #main-content {
+            position: relative;
+            min-height: 100vh;
+            z-index: 10;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 20px;
+            background: rgb(255, 255, 255);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        /* Nav animation */
+        .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        }
+
+        .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        }
+
+        .hover-underline-animation.left::after {
+        transform-origin: bottom right;
+        }
+
+        .hover-underline-animation.left:hover::after {
+        transform-origin: bottom left;
+        }
+
+        /* About me slogan */
+        .slogan-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .text-section {
+            z-index: 100;
+            width: 60vw;
+            padding-left: -10%;
+            animation: slide-right 0.5s forwards;
+            -webkit-animation: slide-right 0.5s forwards;
+        }
+
+        @-webkit-keyframes slide-right {
+            100% { padding-left: 10%; }
+        }
+
+        @keyframes slide-right {
+            100% { padding-left: 10%; }
+        }
+
+        .text-section h1 {
+            font-size: 300px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .text-section h1 span {
+            color: #ccc;
+        }
+
+        .text-section p {
+            font-size: 32px;
+            line-height: 1.6;
+            margin-top: 16px;
+            font-weight: 100;
+        }
+
+        .image-section {
+            right: -150px;
+            margin-right: 20%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slide-left 0.5s forwards;
+            -webkit-animation: slide-left 0.5s forwards;
+            z-index: -1;
+        }
+
+
+        @-webkit-keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        @keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .description {
+            max-width: 1000px;
+            margin: 150px auto;
+            font-size: 20px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .cv {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 100px;
+            margin: 0 150px 150px 150px;
+        }
+
+        .education {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .skills {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .skill img {
+            position: absolute;
+            width: 300px;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 40px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: start;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .socials img{
+            width: 36px;
+            height: 36px;
+      
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-content">
+                <a href=""><p class="hover-underline-animation left highlight">ABOUT ME</p></a>
+                <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
+            </div>
+            <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
+        </nav>
+        <div class="slogan-container">
+            <div class="text-section">
+              <h1>annika.</h1>
+            </div>
+        
+            <div class="image-section">
+              <img src="assets/about.png" alt="Annika Cagitz Portrait">
+            </div>
+          </div>
+          <div class="description">
+            <p>
+                I'm Annika Stefanie Cagitz, a Multimedia Art student in Communication Design based in Salzburg.<br><br>
+                I'm passionate about turning ideas into visual stories that connect — blending creativity, storytelling, and problem-solving.<br>
+                My work spans graphic design, editorial concepts, photography, and art direction, often inspired by fashion, magazines, and visual culture. I love exploring how images and words interact, how layouts guide emotions, and how design creates impact beyond aesthetics.<br><br>
+                Curiosity drives me — whether I'm teaching kids on the ice rink, sketching at night, or exploring new cultures, each experience shapes my creative voice. At heart, I'm both designer and storyteller, using visuals to move people and spark fresh ways of thinking.
+            </p>
+          </div>
+          <div class="cv">
+            <div class="education">
+                <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Education</span><br>
+                    <strong>2024 – Present | BA in Multimedia Art (Focus: Communication Design)</strong><br>
+                    University of Applied Sciences, Salzburg, Austria<br>
+                    Focused on branding, visual storytelling, editorial design, and digital media.<br>
+                    <br>
+                    <strong>2018 – 2023 | Higher Technical School Leonding, Austria</strong><br>
+                    Specialization in IT and Media Technology<br>
+                    Studied multimedia production, web development, and technical design,
+                    gaining a strong foundation in both technology and creative media.
+                </p>
+            </div>
+            <div class="education">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Work Experience</span><br>
+                    <strong>2023–2024 | Waitress – Gasthaus Cagitz, Austria</strong><br>
+                    Developed strong communication, teamwork, and organizational skills while working in a fast-paced environment.<br>
+                    Learned to manage multiple tasks efficiently and provide excellent customer service.<br>
+                    <br>
+                    <strong>2022 | Internship – Sparkasse OÖ, Austria</strong><br>
+                    Diploma project focused on UI/UX design and frontend development for the internal project management system.<br>
+                    Designed user interfaces and optimized user experience for internal workflows.<br>
+                    <br>
+                    <strong>2020 | Internship – BMT Linz, Austria</strong><br>
+                    Assisted with IT systems and printer management, gaining technical and problem-solving skills.<br>
+                </p>
+                   <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+            </div>
+            <div class="skills">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Skills</span><br>
+                    <strong>Photography & Storytelling</strong> - Capturing moments and creating visual narratives that engage and inspire<br>
+                    <br>
+                    <strong>Graphic & Motion Design</strong> - Branding, editorial, digital media, and dynamic animations</strong><br>
+                    <br>
+                    <strong>UI/UX Design</strong> - Designing intuitive and user-friendly interfaces<br>
+                    <br>
+                    <strong>Video & Film Production</strong> - Shooting, editing, and producing impactful videos<br>
+                    <br>
+                    <strong>Creative Thinking & Collaboration</strong> - Generating innovative concepts and working effectively in teams<br>
+                    <br>
+                    <strong>Programming</strong> - Java, HTML, CSS, JavaScript, Angular<br>
+                    <br>
+                    <strong>Software & Tools</strong> - Adobe Illustrator, Photoshop, InDesign, After Effects, Premiere, Figma, Canva, DaVinci Resolve
+                </p>
+                <img src="assets/skills.png" alt="Skills Illustration">
+            </div>
+          </div>
+          <footer>
+            <div class="slogan"><p>Annika.</p></div>
+            <div class="socials">
+                    <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                    <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

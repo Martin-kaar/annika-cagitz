@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <title>Annika Cagitz</title>
     <style>
          * {
@@ -13,16 +16,23 @@
         body {
             font-family: 'Helvetica', serif;
             overflow-x: hidden;
-            background-color: black;
+            background-color: white;
 
         }
+
+        p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
         /* Main Content */
         #main-content {
             position: relative;
             min-height: 100vh;
-            padding: 20px;
             z-index: 10;
-            color: white;
+            color: black;
         }
 
         nav {
@@ -31,14 +41,13 @@
             top: 0;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            background: rgba(0, 0, 0, 0.8);
+            padding: 25px 20px;
+            background: rgb(255, 255, 255);
             z-index: 1000;
         }
 
         nav a {
-            color: white;
+            color: black;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
@@ -68,7 +77,7 @@
         height: 2px;
         bottom: 0;
         left: 0;
-        background-color: #ffffff;
+        background-color: #000000;
         transition: transform 0.25s ease-out;
         }
 
@@ -110,8 +119,8 @@
         }
 
         .text-section h1 {
-            font-size: 128px;
-            font-weight: 700;
+            font-size: 300px;
+            font-weight: 400;
             margin: 0;
         }
 
@@ -127,7 +136,8 @@
         }
 
         .image-section {
-            right: -100px;
+            right: -150px;
+            margin-right: 20%;
             position: absolute;
             display: flex;
             justify-content: center;
@@ -160,34 +170,34 @@
             padding: 0 20px;
         }
 
-        .collage {
+        .cv {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 100px;
+            margin: 0 150px 150px 150px;
+        }
+
+        .education {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 45px;
-            margin-bottom: 350px;
+            gap: 24px;
         }
 
-        .column {
+        .skills {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 60px;
+            flex-direction: row;
+            justify-content: center;
+            gap: 24px;
         }
 
-        .blank {
-            background-color: #ccc;
-        }
-
-        .horizontal {
-            width: 610px;
-            height: 420px;
-        }
-
-        .vertical {
-            width: 420px;
-            height: 460px;
+        .skill img {
+            position: absolute;
+            width: 300px;
+            height: auto;
+            object-fit: cover;
         }
 
         /* Footer */
@@ -209,12 +219,13 @@
             display: flex;
             justify-content: start;
             gap: 15px;
+            padding: 20px;
         }
 
         .socials img{
             width: 36px;
             height: 36px;
-            filter: invert(1);
+      
         }
     </style>
 </head>
@@ -231,12 +242,7 @@
         </nav>
         <div class="slogan-container">
             <div class="text-section">
-              <h1>Annika <span>Cagitz</span></h1>
-              <p>
-                <strong>A</strong>rt Direction<br>
-                Graphic Design<br>
-                <strong>C</strong>reativity
-              </p>
+              <h1>annika.</h1>
             </div>
         
             <div class="image-section">
@@ -251,15 +257,55 @@
                 Curiosity drives me — whether I'm teaching kids on the ice rink, sketching at night, or exploring new cultures, each experience shapes my creative voice. At heart, I'm both designer and storyteller, using visuals to move people and spark fresh ways of thinking.
             </p>
           </div>
-
-          <div class="collage">
-            <div class="column">
-                <img class="item horizontal" src="assets/family.png" alt="family">
-                <div class="item vertical blank"></div>
+          <div class="cv">
+            <div class="education">
+                <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Education</span><br>
+                    <strong>2024 – Present | BA in Multimedia Art (Focus: Communication Design)</strong><br>
+                    University of Applied Sciences, Salzburg, Austria<br>
+                    Focused on branding, visual storytelling, editorial design, and digital media.<br>
+                    <br>
+                    <strong>2018 – 2023 | Higher Technical School Leonding, Austria</strong><br>
+                    Specialization in IT and Media Technology<br>
+                    Studied multimedia production, web development, and technical design,
+                    gaining a strong foundation in both technology and creative media.
+                </p>
             </div>
-            <div class="column">
-                <div class="item vertical blank"></div>
-                <img class="item horizontal" src="assets/skating.png" alt="skating">
+            <div class="education">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Work Experience</span><br>
+                    <strong>2023–2024 | Waitress – Gasthaus Cagitz, Austria</strong><br>
+                    Developed strong communication, teamwork, and organizational skills while working in a fast-paced environment.<br>
+                    Learned to manage multiple tasks efficiently and provide excellent customer service.<br>
+                    <br>
+                    <strong>2022 | Internship – Sparkasse OÖ, Austria</strong><br>
+                    Diploma project focused on UI/UX design and frontend development for the internal project management system.<br>
+                    Designed user interfaces and optimized user experience for internal workflows.<br>
+                    <br>
+                    <strong>2020 | Internship – BMT Linz, Austria</strong><br>
+                    Assisted with IT systems and printer management, gaining technical and problem-solving skills.<br>
+                </p>
+                   <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+            </div>
+            <div class="skills">
+                <p>
+                    <span style="font-size: 48px; font-weight: bold;">My Skills</span><br>
+                    <strong>Photography & Storytelling</strong> - Capturing moments and creating visual narratives that engage and inspire<br>
+                    <br>
+                    <strong>Graphic & Motion Design</strong> - Branding, editorial, digital media, and dynamic animations</strong><br>
+                    <br>
+                    <strong>UI/UX Design</strong> - Designing intuitive and user-friendly interfaces<br>
+                    <br>
+                    <strong>Video & Film Production</strong> - Shooting, editing, and producing impactful videos<br>
+                    <br>
+                    <strong>Creative Thinking & Collaboration</strong> - Generating innovative concepts and working effectively in teams<br>
+                    <br>
+                    <strong>Programming</strong> - Java, HTML, CSS, JavaScript, Angular<br>
+                    <br>
+                    <strong>Software & Tools</strong> - Adobe Illustrator, Photoshop, InDesign, After Effects, Premiere, Figma, Canva, DaVinci Resolve
+                </p>
+                <img src="assets/skills.png" alt="Skills Illustration">
             </div>
           </div>
           <footer>
