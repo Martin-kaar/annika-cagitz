@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annika Cagitz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --door-frame: 101, 67, 33;
+            --door-wood: 139, 69, 19;
+            --door-handle: 45, 100, 51;
+            --door-shadow: 0, 0, 0;
+            --wall-color: 45, 37, 30;
+            --light-glow: 60, 100, 80;
+        }
+
+        body {
+            font-family: 'Helvetica', serif;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, 
+                hsl(var(--wall-color)) 0%, 
+                hsl(var(--wall-color) / 0.8) 50%, 
+                hsl(var(--wall-color) / 0.6) 100%);
+            overflow-x: hidden;
+        }
+
+        /* Door Animation Container */
+        #door-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 50;
+            pointer-events: none;
+            perspective: 2000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #door-container.hidden {
+            display: none;
+        }
+
+        /* Door Wrapper */
+        #door-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: none;
+        }
+
+        /* Door Frame */
+        .door-frame {
+            position: absolute;
+            width: 320px;
+            height: 600px;
+            left: -160px;
+            top: -300px;
+            border: 20px solid hsl(var(--door-frame));
+            background: transparent;
+            z-index: 10;
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Door */
+        .door {
+            position: absolute;
+            width: 280px;
+            height: 560px;
+            left: -140px;
+            top: -280px;
+            background: linear-gradient(180deg, 
+                hsl(var(--door-wood)) 0%, 
+                hsl(var(--door-wood) / 0.9) 100%);
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.1s linear;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Wood grain pattern */
+        .door::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                hsla(var(--door-frame), 0.1) 10px,
+                hsla(var(-- ), 0.1) 11px
+            );
+            opacity: 0.5;
+        }
+
+        /* Door panels */
+        .door-panel {
+            position: absolute;
+            background: hsla(var(--door-frame), 0.1);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .panel-top {
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 200px;
+        }
+
+        .panel-middle {
+            top: 240px;
+            left: 20px;
+            right: 20px;
+            height: 140px;
+        }
+
+        .panel-bottom {
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 140px;
+        }
+
+        /* Door Handle */
+        .door-handle {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        .handle-plate {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                hsl(var(--door-handle)) 0%, 
+                hsl(var(--door-handle) / 0.7) 100%);
+            border-radius: 8px;
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.3),
+                inset 0 1px 2px hsla(var(--door-handle), 0.8);
+        }
+
+        .handle-knob {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 30% 30%, 
+                hsl(var(--door-handle)), 
+                hsl(var(--door-handle) / 0.6));
+            border-radius: 50%;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .door-handle.turning .handle-knob {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        /* Light from behind door */
+        .door-light {
+            position: absolute;
+            width: 280px;
+            height: 560px;
+            left: -140px;
+            top: -280px;
+            background: transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .door-light.visible {
+            opacity: 1;
+            background: linear-gradient(90deg,
+                hsla(var(--light-glow), 0.8) 0%,
+                hsla(var(--light-glow), 0.4) 20%,
+                transparent 50%);
+            filter: blur(20px);
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            width: 400px;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: hsla(var(--door-handle), 0.6);
+            font-size: 36px;
+            animation: pulse 2s infinite;
+            text-align: center;
+        }
+
+        .scroll-hint-2 {
+            position: absolute;
+            width: 400px;
+            bottom: -125px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: hsla(var(--door-handle), 0.6);
+            font-size: 18px;
+            animation: pulse 2s infinite;
+            text-align: center;
+        }
+
+        /* Portal Effect */
+        .portal-vortex {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Magical particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: hsl(var(--light-glow));
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .particle.active {
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Keyhole */
+        .keyhole {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            right: 35px;
+            top: 55%;
+            transform: translateY(-50%);
+            background: hsl(var(--door-shadow));
+            border-radius: 50% 50% 0 0;
+            opacity: 0.8;
+        }
+
+        .keyhole::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 15px;
+            background: hsl(var(--door-shadow));
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+
+        /* Peephole */
+        .peephole {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: 132px;
+            top: 30%;
+            background: radial-gradient(circle at 30% 30%,
+                hsl(var(--door-handle)),
+                hsl(var(--door-handle) / 0.6));
+            border-radius: 50%;
+            box-shadow: 
+                inset -1px -1px 2px #00000066,
+                0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Content */
+        #main-content {
+            position: relative;
+            margin-top: 250vh;
+            min-height: 100vh;
+            padding: 80px 20px;
+            z-index: 10;
+            background-color: black;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Nav animation */
+        .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        }
+
+        .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #ffffff;
+        transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        }
+
+        .hover-underline-animation.left::after {
+        transform-origin: bottom right;
+        }
+
+        .hover-underline-animation.left:hover::after {
+        transform-origin: bottom left;
+        }
+
+/* Text slider */
+        .text-slider-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .text-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .text-line {
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 1rem 0;
+        }
+
+        .text-track {
+            display: inline-flex;
+            animation: scroll-left 20s linear infinite;
+        }
+
+        .text-track.reverse {
+            animation: scroll-right 20s linear infinite;
+        }
+
+        .text-content {
+            display: inline-block;
+            padding-right: 180px;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        /* Alternate styling for visual variety */
+        .text-line:nth-child(2) .text-content {
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+
+        .text-line:nth-child(3) .text-content {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Gradient overlays for fade effect */
+        .text-line::before,
+        .text-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .text-line::before {
+            left: 0;
+            background: linear-gradient(to right, #0a0a0a, transparent);
+        }
+
+        .text-line::after {
+            right: 0;
+            background: linear-gradient(to left, #0a0a0a, transparent);
+        }
+
+        /* Hover effect */
+        .text-line:hover .text-track {
+            animation-play-state: paused;
+        }
+
+        .text-content:hover {
+            color: #6366f1;
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .text-content {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+            
+            .text-slider {
+                gap: 1rem;
+            }
+        }
+
+        /* Banner */
+        .banner {
+            margin-top: 250px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            font-size: 64px;
+            word-wrap: break-word;
+        }
+
+        .banner-text {
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.2;
+            font-weight: 100;
+        }
+
+        .banner-image {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 200px;
+        }
+
+        .banner-image img {
+            width: 100%;
+        }
+
+/* Slideshow */
+        .slideshow-container {
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slideshow-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slideshow-track {
+            display: flex;
+            gap: 2rem;
+            padding: 0 1rem;
+            will-change: transform;
+            transition: none;
+        }
+
+        .slide {
+            flex-shrink: 0;
+            width: 400px;
+            height: 300px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: scale(1.05);
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 1200px) {
+            .slide {
+                width: 350px;
+                height: 262px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 280px;
+                height: 210px;
+            }
+            
+            .slideshow-track {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                width: 200px;
+                height: 150px;
+            }
+        }
+
+        /* Footer */
+        
+        .footer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 40px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: start;
+            gap: 15px;
+        }
+
+        .socials img{
+            width: 36px;
+            height: 36px;
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Door Animation Container -->
+    <div id="door-container">
+        <div id="door-wrapper">
+            <!-- Door Frame -->
+            <div class="door-frame"></div>
+            
+            <!-- Light from behind door -->
+            <div class="door-light" id="door-light"></div>
+            
+            <!-- Door -->
+            <div class="door" id="door">
+                <!-- Door panels -->
+                <div class="door-panel panel-top"></div>
+                <div class="door-panel panel-middle"></div>
+                <div class="door-panel panel-bottom"></div>
+                
+                <!-- Peephole -->
+                <div class="peephole"></div>
+                
+                <!-- Door Handle -->
+                <div class="door-handle" id="door-handle">
+                    <div class="handle-plate"></div>
+                    <div class="handle-knob"></div>
+                </div>
+                
+                <!-- Keyhole -->
+                <div class="keyhole"></div>
+                
+                <!-- Scroll hint -->
+                <div class="scroll-hint" id="scroll-hint">Scroll to open Me</div>
+                <div class="scroll-hint-2" id="scroll-hint-2">I will show you my story</div>
+
+            </div>
+            
+            <!-- Particles (will be added dynamically) -->
+            <div id="particles-container"></div>
+        </div>
+        
+        <!-- Portal Vortex -->
+        <div class="portal-vortex" id="portal-vortex"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><a href=""><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-content">
+                <a href="aboutme.html"><p class="hover-underline-animation left">About me</p></a>
+                <a href="works.html"><p class="hover-underline-animation left">Works</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">gallery</p></a>
+            </div>
+            <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">Contact</p></a></div>
+        </nav>
+        <div class="banner">
+            <div class="banner-text">
+                A <i>CREATIVE</i> DIRECTOR, GRAPHIC DESIGNER AND <i>PHOTOGRAPHER</i> BORN AND RAISED IN AUSTRIA.
+            </div>
+        </div>
+        <div class="text-slider-container">
+            <div class="text-slider">
+                <div class="text-line">
+                    <div class="text-track" id="track1">
+                        <!-- Content will be added by JavaScript -->
+                    </div>
+                </div>
+                <div class="text-line">
+                    <div class="text-track reverse" id="track2">
+                        <!-- Content will be added by JavaScript -->
+                    </div>
+                </div>
+                <div class="text-line">
+                    <div class="text-track" id="track3">
+                        <!-- Content will be added by JavaScript -->
+                    </div>
+                </div>
+                <div class="text-line">
+                    <div class="text-track reverse" id="track4">
+                        <!-- Content will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-image">
+            <img src="assets/banner.png" alt="Banner image">
+        </div>
+
+        <div class="slideshow-container">
+            <div class="slideshow-wrapper">
+                <div id="slideshowTrack" class="slideshow-track">
+                    <!-- Slides will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="slogan"><p>Annika.</p></div>
+            <div class="socials">
+                    <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                    <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const imageSources = [
+            'assets/slide/slide1.jpg',
+            'assets/slide/slide2.jpg',
+            'assets/slide/slide3.jpg',
+            'assets/slide/slide4.jpg',
+            'assets/slide/slide5.jpg',
+            'assets/slide/slide6.jpg',
+            'assets/slide/slide7.jpg',
+            'assets/slide/slide8.jpg'
+        ];
+        
+        // Get the slideshow track element
+        const slideshowTrack = document.getElementById('slideshowTrack');
+        
+        // Create slides dynamically
+        function createSlides() {
+            // Create two sets of slides for infinite scroll
+            for (let set = 0; set < 2; set++) {
+                imageSources.forEach((src, index) => {
+                    const slideDiv = document.createElement('div');
+                    slideDiv.className = 'slide';
+                    
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `Slide ${index + 1}`;
+                    img.className = 'slide-image';
+                    img.loading = 'lazy';
+                    
+                    slideDiv.appendChild(img);
+                    slideshowTrack.appendChild(slideDiv);
+                });
+            }
+        }
+        
+        // Initialize slides
+        createSlides();
+        
+        // Initialize position
+        let currentPosition = 0;
+        let animationId;
+        
+        // Calculate the width of one set of slides
+        function getSlideSetWidth() {
+            const slides = slideshowTrack.querySelectorAll('.slide');
+            const slideCount = slides.length / 2; // We have duplicates
+            if (slideCount === 0) return 0;
+            
+            const firstSlide = slides[0];
+            const computedStyle = window.getComputedStyle(slideshowTrack);
+            const gap = parseFloat(computedStyle.gap) || 32; // Default 2rem = 32px
+            
+            return (firstSlide.offsetWidth * slideCount) + (gap * (slideCount - 1));
+        }
+        
+        // Animation function
+        function animate() {
+            const slideSetWidth = getSlideSetWidth();
+            
+            // Move the slides
+            currentPosition -= 1; // Speed of sliding (pixels per frame)
+            
+            // Reset position when first set is completely out of view
+            if (Math.abs(currentPosition) >= slideSetWidth) {
+                currentPosition = 0;
+            }
+            
+            // Apply the transform
+            slideshowTrack.style.transform = `translateX(${currentPosition}px)`;
+            
+            // Continue animation
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Start the animation when page loads
+        window.addEventListener('load', function() {
+            // Small delay to ensure layout and images are loaded
+            setTimeout(() => {
+                animationId = requestAnimationFrame(animate);
+            }, 100);
+        });
+        
+        // Clean up on page unload
+        window.addEventListener('unload', function() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        });
+        
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Recalculate on resize but don't reset position
+                // This ensures smooth continuation after resize
+            }, 250);
+        });
+    </script>
+    <script>
+        // Animation Controller
+        const doorContainer = document.getElementById('door-container');
+        const doorWrapper = document.getElementById('door-wrapper');
+        const door = document.getElementById('door');
+        const doorHandle = document.getElementById('door-handle');
+        const doorLight = document.getElementById('door-light');
+        const scrollHint = document.getElementById('scroll-hint');
+        const scrollHint2 = document.getElementById('scroll-hint-2');
+        const portalVortex = document.getElementById('portal-vortex');
+        const particlesContainer = document.getElementById('particles-container');
+
+        let scrollProgress = 0;
+        let isDoorHidden = false;
+
+        // Create particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = -140 + Math.random() * 280 + 'px';
+                particle.style.top = -280 + Math.random() * 560 + 'px';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Handle scroll animation
+        function handleScroll() {
+            const scrollHeight = window.innerHeight * 2.5;
+            const scrolled = window.scrollY;
+            const progress = Math.min(scrolled / scrollHeight, 1);
+            
+            scrollProgress = progress;
+            
+            // Animation phases
+            const handleTurnProgress = Math.min(progress * 4, 1);
+            const doorOpenProgress = Math.max(0, Math.min((progress - 0.1) * 2, 1));
+            const diveProgress = Math.max(0, (progress - 0.5) * 2);
+            
+            // Handle turning
+            if (handleTurnProgress > 0.2) {
+                doorHandle.classList.add('turning');
+            } else {
+                doorHandle.classList.remove('turning');
+            }
+            
+            // Door opening
+            const doorRotation = doorOpenProgress * 85;
+            door.style.transform = `rotateY(-${doorRotation}deg)`;
+            
+            // Hide scroll hint
+            if (handleTurnProgress > 0.1) {
+                scrollHint.style.display = 'none';
+                scrollHint2.style.display = 'none';
+            } else {
+                scrollHint.style.display = 'block';
+                scrollHint2.style.display = 'block';
+            }
+            
+            // Light effect
+            if (doorOpenProgress > 0.1 && doorOpenProgress < 0.9) {
+                doorLight.classList.add('visible');
+                doorLight.style.width = 280 + doorOpenProgress * 200 + 'px';
+            } else {
+                doorLight.classList.remove('visible');
+            }
+            
+            // Particles
+            if (doorOpenProgress > 0.3 && doorOpenProgress < 0.9) {
+                particlesContainer.querySelectorAll('.particle').forEach(particle => {
+                    particle.classList.add('active');
+                });
+            } else {
+                particlesContainer.querySelectorAll('.particle').forEach(particle => {
+                    particle.classList.remove('active');
+                });
+            }
+            
+            // Dive animation
+            if (diveProgress > 0) {
+                const scale = 1 + diveProgress * 5;
+                const opacity = 1 - diveProgress * 0.9;
+                const translateZ = diveProgress * 1000;
+                const rotateX = diveProgress * 10;
+                
+                doorWrapper.style.transform = `
+                    translateZ(${translateZ}px)
+                    scale(${scale})
+                    rotateX(${rotateX}deg)
+                `;
+                doorWrapper.style.opacity = opacity;
+                
+                // Portal effect
+                portalVortex.style.opacity = diveProgress * 0.8;
+                portalVortex.style.background = `radial-gradient(circle at center, 
+                    transparent ${20 + diveProgress * 60}%, 
+                    hsla(var(--door-shadow), ${0.9 * diveProgress}) 100%)`;
+            } else {
+                doorWrapper.style.transform = '';
+                doorWrapper.style.opacity = 1;
+                portalVortex.style.opacity = 0;
+            }
+            
+            // Hide door completely
+            if (progress >= 1) {
+                if (!isDoorHidden) {
+                    doorContainer.classList.add('hidden');
+                    isDoorHidden = true;
+                }
+            } else {
+                if (isDoorHidden) {
+                    doorContainer.classList.remove('hidden');
+                    isDoorHidden = false;
+                }
+            }
+        }
+
+        // Attach scroll listener
+        window.addEventListener('scroll', handleScroll);
+        
+        // Initial state
+        handleScroll();
+    </script>
+        <script>
+            // Text content
+            const text = "A CREATIVE DIRECTOR, GRAPHIC DESIGNER AND PHOTOGRAPHER BORN AND RAISED IN AUSTRIA.";
+            
+            // Split text into parts for different lines
+            const textParts = [
+                "A CREATIVE DIRECTOR,",
+                "GRAPHIC DESIGNER",
+                " AND PHOTOGRAPHER",
+                "BORN AND RAISED IN AUSTRIA"
+            ];
+            
+            // Function to create duplicated text for infinite scroll
+            function createInfiniteText(trackId, textContent) {
+                const track = document.getElementById(trackId);
+                
+                // Create multiple copies for seamless loop
+                // We need at least 2 copies to ensure smooth infinite scroll
+                for (let i = 0; i < 2; i++) {
+                    const span = document.createElement('span');
+                    span.className = 'text-content';
+                    span.textContent = textContent + '';
+                    track.appendChild(span);
+                    
+                    // Clone for seamless effect
+                    const clone = span.cloneNode(true);
+                    track.appendChild(clone);
+                }
+            }
+            
+            // Initialize all tracks
+            createInfiniteText('track1', textParts[0]);
+            createInfiniteText('track2', textParts[1]);
+            createInfiniteText('track3', textParts[2]);
+            createInfiniteText('track4', textParts[3]);
+
+            
+            // Dynamic speed adjustment based on text length
+            const tracks = document.querySelectorAll('.text-track');
+            tracks.forEach((track, index) => {
+                const textLength = textParts[index % textParts.length].length;
+                const duration = Math.max(20, textLength * 0.5); // Adjust speed based on text length
+                track.style.animationDuration = duration + 's';
+            });
+        </script>
+</body>
+</html>

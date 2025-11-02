@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annika Cagitz</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica', serif;
+            overflow-x: hidden;
+            background-color: black;
+
+        }
+        /* Main Content */
+        #main-content {
+            position: relative;
+            min-height: 100vh;
+            padding: 20px;
+            z-index: 10;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        /* Nav animation */
+        .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        }
+
+        .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #ffffff;
+        transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        }
+
+        .hover-underline-animation.left::after {
+        transform-origin: bottom right;
+        }
+
+        .hover-underline-animation.left:hover::after {
+        transform-origin: bottom left;
+        }
+
+        
+        /* Footer */
+        .footer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 40px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: start;
+            gap: 15px;
+        }
+
+        .socials img{
+            width: 36px;
+            height: 36px;
+            filter: invert(1);
+        }
+        @-webkit-keyframes slide-top {
+            100% { padding-top: 0%; }
+        }
+
+        @keyframes slide-top {
+            100% { padding-top: 0%; }
+        }
+
+        .works {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10% 7%;
+            animation: slide-top 0.5s forwards;
+            -webkit-animation: slide-top 0.5s forwards;
+        }
+
+        .work {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            margin-top: 40px;
+            
+        }
+
+        .work-description {
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+            justify-content: start;
+            width: 100%;
+        }
+
+        .work-description h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .work-description p {
+            font-size: 16px;
+            font-weight: 300;
+            word-wrap: break-word;
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            border-radius: 30px;
+            height: 400px;
+        }
+
+        .image-wrapper img {
+            border-radius: 30px;
+            height: 400px;
+            object-fit: cover;
+            transition: all .3s ease;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.25);
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-content">
+                <a href="aboutme.html"><p class="hover-underline-animation left">ABOUT ME</p></a>
+                <a href="works.html"><p class="hover-underline-animation left highlight">WORKS</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
+            </div>
+            <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
+        </nav>
+        <div class="works">
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/jazz.png">
+                </div>
+                <div class="work-description">
+                    <h1>Jazz Festival Saalfelden</h1>
+                    <p>A campagne for the Jazz Festival 2026 in Saalfelden.</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/gaze.png">
+                </div>
+                <div class="work-description" style="width: 580px;">
+                    <h1>The Gaze</h1>
+                    <p >A campaine against the Male Gaze. Button’s for woman who want to show that it is not okay to stare.</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/time.png">
+                </div>
+                <div class="work-description">
+                    <h1>Time</h1>
+                    <p>Time is so many things. It can not be described by one.</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/smoke.png">
+                </div>
+                <div class="work-description">
+                    <h1>My NoGo’s</h1>
+                    <p>What I really don’t like.</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/feet.png">
+                </div>
+                <div class="work-description">
+                    <h1>Photography</h1>
+                    <p>Love to Photgraphy important moments</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/batman.png">
+                </div>
+                <div class="work-description">
+                    <h1>Branding</h1>
+                    <p>A Branding for The Batman</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/ivy.png">
+                </div>
+                <div class="work-description">
+                    <h1>Logo for Ivy & Cloud</h1>
+                    <p>A fictive skincare brand.</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/field.png">
+                </div>
+                <div class="work-description">
+                    <h1>Website</h1>
+                    <p>Website for flowers</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/alva.png">
+                </div>
+                <div class="work-description">
+                    <h1>Logo</h1>
+                    <p>Logo for a fashion brand</p>
+                </div>
+            </div>
+            <div class="work">
+                <div class="image-wrapper">
+                    <img src="assets/works/ac.png">
+                </div>
+                <div class="work-description">
+                    <h1>Logo for Ivy & Cloud</h1>
+                    <p>A fictive skincare brand.</p>
+                </div>
+            </div>
+        </div>
+          <footer>
+            <div class="slogan"><p>Annika.</p></div>
+            <div class="socials">
+                    <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                    <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

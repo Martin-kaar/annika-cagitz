@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annika Cagitz</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica', serif;
+            overflow-x: hidden;
+
+        }
+        /* Main Content */
+        #main-content {
+            position: relative;
+            min-height: 100vh;
+            z-index: 10;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 40px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+
+
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        /* Nav animation */
+        .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        }
+
+        .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        }
+
+        .hover-underline-animation.left::after {
+        transform-origin: bottom right;
+        }
+
+        .hover-underline-animation.left:hover::after {
+        transform-origin: bottom left;
+        }
+
+        
+        /* Footer */
+        footer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 40px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: start;
+            gap: 15px;
+        }
+
+        .contact-socials-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 62px;
+            width: 20%;
+        }
+
+        .contact-socials img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .socials img{
+            width: 36px;
+            height: 36px;
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .contact-me-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 250px;
+        }
+
+        .contact-me-wrapper h1 {
+            font-size: 32px;
+            width: 450px;
+            text-align: left;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .names {
+            display: flex;
+            gap: 32px;
+        }
+
+        .input {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+            background: #FFF;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        textarea {
+            font-family: 'Helvetica', serif;
+        }
+
+        .label-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 450px;
+        }
+
+        .label-wrapper p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .button {
+            background-color: black;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            font-size: 16px;
+            font-weight: 500;
+            width: 450px;
+        }
+
+        .button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-content">
+                <a href="aboutme.html"><p class="hover-underline-animation left">ABOUT ME</p></a>
+                <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
+            </div>
+            <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left highlight">CONTACT</p></a></div>
+        </nav>
+        <img class="banner" src="assets/contact-banner.png" alt="banner">
+        <div class="contact-socials-wrapper">
+            <div class="contact-socials">
+                <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </div>
+        <div class="contact-me-wrapper">
+            <h1>Contact me</h1>
+            <div class="contact-form">
+                <div class="names">
+                    <div class="label-wrapper" style="width: 209px;">
+                        <p>First name</p>
+                        <input id="firname-input" class="input" type="text" placeholder="Jane" style="width: 209px;"/>
+                    </div>
+                    <div class="label-wrapper" style="width: 209px;">
+                        <p>Last name</p>
+                        <input id="lastname-input" class="input" type="text" placeholder="Smitherson" style="width: 209px;"/>
+                    </div>                
+                </div>
+                <div class="label-wrapper">
+                    <p>Email</p>
+                    <input id="email-input" class="input" type="email" placeholder="jane.smitherson@example.com" style="width: 450px;"/>
+                </div>
+                <div class="label-wrapper">
+                    <p>Your message</p>
+                    <textarea id="message-input" class="input" type="email" placeholder="Enter your message here" style="width: 450px;" rows="5"></textarea>
+                </div>
+                <div onclick="sendMessage()" class="button" id="submit-button">Submit</div>
+            </div>
+        </div>
+          <footer>
+            <div class="slogan"><p>Annika.</p></div>
+            <div class="socials">
+                    <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                    <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function sendMessage() {
+            const button = document.getElementById('submit-button');
+            const firstname = document.getElementById('firname-input').value;
+            const lastname = document.getElementById('lastname-input').value;
+            const email = document.getElementById('email-input').value;
+            const message = document.getElementById('message-input').value;
+
+            const a = document.createElement('a');
+            a.href = `mailto:annika.cagitzz@gmail.com?subject=Contact request&body=${message}%0D%0A%0D%0A${firstname} ${lastname}`;
+            a.click();
+        }
+
+    </script>
+</body>
+</html>

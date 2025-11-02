@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annika Cagitz</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica', serif;
+            overflow-x: hidden;
+            background-color: black;
+
+        }
+        /* Main Content */
+        #main-content {
+            position: relative;
+            min-height: 100vh;
+            padding: 20px;
+            z-index: 10;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            position: sticky;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        /* Nav animation */
+        .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        }
+
+        .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #ffffff;
+        transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        }
+
+        .hover-underline-animation.left::after {
+        transform-origin: bottom right;
+        }
+
+        .hover-underline-animation.left:hover::after {
+        transform-origin: bottom left;
+        }
+
+        /* About me slogan */
+        .slogan-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .text-section {
+            z-index: 100;
+            width: 60vw;
+            padding-left: -10%;
+            animation: slide-right 0.5s forwards;
+            -webkit-animation: slide-right 0.5s forwards;
+        }
+
+        @-webkit-keyframes slide-right {
+            100% { padding-left: 10%; }
+        }
+
+        @keyframes slide-right {
+            100% { padding-left: 10%; }
+        }
+
+        .text-section h1 {
+            font-size: 128px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .text-section h1 span {
+            color: #ccc;
+        }
+
+        .text-section p {
+            font-size: 32px;
+            line-height: 1.6;
+            margin-top: 16px;
+            font-weight: 100;
+        }
+
+        .image-section {
+            right: -100px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slide-left 0.5s forwards;
+            -webkit-animation: slide-left 0.5s forwards;
+            z-index: -1;
+        }
+
+
+        @-webkit-keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        @keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .description {
+            max-width: 1000px;
+            margin: 150px auto;
+            font-size: 20px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .collage {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 45px;
+            margin-bottom: 350px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .blank {
+            background-color: #ccc;
+        }
+
+        .horizontal {
+            width: 610px;
+            height: 420px;
+        }
+
+        .vertical {
+            width: 420px;
+            height: 460px;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 40px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: start;
+            gap: 15px;
+        }
+
+        .socials img{
+            width: 36px;
+            height: 36px;
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-content">
+                <a href=""><p class="hover-underline-animation left highlight">ABOUT ME</p></a>
+                <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
+            </div>
+            <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
+        </nav>
+        <div class="slogan-container">
+            <div class="text-section">
+              <h1>Annika <span>Cagitz</span></h1>
+              <p>
+                <strong>A</strong>rt Direction<br>
+                Graphic Design<br>
+                <strong>C</strong>reativity
+              </p>
+            </div>
+        
+            <div class="image-section">
+              <img src="assets/about.png" alt="Annika Cagitz Portrait">
+            </div>
+          </div>
+          <div class="description">
+            <p>
+                I'm Annika Stefanie Cagitz, a Multimedia Art student in Communication Design based in Salzburg.<br><br>
+                I'm passionate about turning ideas into visual stories that connect — blending creativity, storytelling, and problem-solving.<br>
+                My work spans graphic design, editorial concepts, photography, and art direction, often inspired by fashion, magazines, and visual culture. I love exploring how images and words interact, how layouts guide emotions, and how design creates impact beyond aesthetics.<br><br>
+                Curiosity drives me — whether I'm teaching kids on the ice rink, sketching at night, or exploring new cultures, each experience shapes my creative voice. At heart, I'm both designer and storyteller, using visuals to move people and spark fresh ways of thinking.
+            </p>
+          </div>
+
+          <div class="collage">
+            <div class="column">
+                <img class="item horizontal" src="assets/family.png" alt="family">
+                <div class="item vertical blank"></div>
+            </div>
+            <div class="column">
+                <div class="item vertical blank"></div>
+                <img class="item horizontal" src="assets/skating.png" alt="skating">
+            </div>
+          </div>
+          <footer>
+            <div class="slogan"><p>Annika.</p></div>
+            <div class="socials">
+                    <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
+                    <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
+                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
