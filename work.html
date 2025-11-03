@@ -108,88 +108,6 @@
             100% { padding-left: 10%; }
         }
 
-        .text-section h1 {
-            font-size: 300px;
-            font-weight: 400;
-            margin: 0;
-        }
-
-        .text-section h1 span {
-            color: #ccc;
-        }
-
-        .text-section p {
-            font-size: 32px;
-            line-height: 1.6;
-            margin-top: 16px;
-            font-weight: 100;
-        }
-
-        .image-section {
-            right: -150px;
-            margin-right: 20%;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: slide-left 0.5s forwards;
-            -webkit-animation: slide-left 0.5s forwards;
-            z-index: -1;
-        }
-
-
-        @-webkit-keyframes slide-left {
-            100% { right: 0; }
-        }
-
-        @keyframes slide-left {
-            100% { right: 0; }
-        }
-
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .description {
-            max-width: 1000px;
-            margin: 150px auto;
-            font-size: 20px;
-            line-height: 1.6;
-            padding: 0 20px;
-        }
-
-        .cv {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            gap: 100px;
-            margin: 0 150px 150px 150px;
-        }
-
-        .education {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .skills {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .skill img {
-            position: absolute;
-            width: 300px;
-            height: auto;
-            object-fit: cover;
-        }
-
         /* Footer */
         .footer {
             display: flex;
@@ -219,6 +137,61 @@
         }
     </style>
 </head>
+<script>
+    const workData = {
+        jazz: {
+            title: "Jazz Festival Saalfelden",
+            description: "As part of a design competition within our degree program, I developed a visual concept for the Saalfelden Jazz Festival. <br><br>My initial approach was inspired by the map of Saalfelden, representing place, connection, and local identity.<br>The core idea, however, evolved from the imagery of footprints as a metaphor for diversity, togetherness, dance, and joy. The design translates the movement and rhythm of jazz into a dynamic visual language.<br><br>The concept was produced in multiple formats and was awarded second place in the competition.",
+            imageContent: ["assets/works/jazz.png"]
+        },
+        gaze: {
+            title: "The Gaze",
+            description: "A campaine against the Male Gaze. Button’s for woman who want to show that it is not okay to stare.",
+            images: ["assets/works/gaze.png"]
+        },
+        time: {
+            title: "Time",
+            description: "Time is so many things. It can not be described by one.",
+            images: ["assets/works/time.png"]
+        },
+        smoke: {
+            title: "My NoGo’s",
+            description: "What I really don’t like.",
+            images: ["assets/works/smoke.png"]
+        },
+        feet: {
+            title: "Photography",
+            description: "Love to Photgraphy important moments",
+            images: ["assets/works/feet.png"]
+        },
+        batman: {
+            title: "Branding",
+            description: "A Branding for The Batman",
+            images: ["assets/works/batman.png"]
+        },
+        ivy: {
+            title: "Logo for Ivy & Cloud",
+            description: "A fictive skincare brand.",
+            images: ["assets/works/ivy.png"]
+        },
+        field: {
+            title: "Website",
+            description: "Website for flowers",
+            images: ["assets/works/field.png"]
+        },
+        alva: {
+            title: "Logo",
+            description: "Logo for a fashion brand",
+            images: ["assets/works/alva.png"]
+        },
+        ac: {
+            title: "Logo for Ivy & Cloud",
+            description: "A fictive skincare brand.",
+            images: ["assets/works/ac.png"]
+        }
+    };
+    let currentWork = new URLSearchParams(window.location.search).get("work");
+</script>
 <body>
     <div id="main-content">
         <nav>
@@ -230,74 +203,13 @@
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
-        <div class="slogan-container">
-            <div class="text-section">
-              <h1>annika.</h1>
+        <div class="work-content">
+            <h1 class="work-title"></h1>
+            <div class="work-description"></div>
+            <div class="images">
+
             </div>
-        
-            <div class="image-section">
-              <img src="assets/about.png" alt="Annika Cagitz Portrait">
-            </div>
-          </div>
-          <div class="description">
-            <p>
-                I'm Annika Stefanie Cagitz, a Multimedia Art student in Communication Design based in Salzburg.<br><br>
-                I'm passionate about turning ideas into visual stories that connect — blending creativity, storytelling, and problem-solving.<br>
-                My work spans graphic design, editorial concepts, photography, and art direction, often inspired by fashion, magazines, and visual culture. I love exploring how images and words interact, how layouts guide emotions, and how design creates impact beyond aesthetics.<br><br>
-                Curiosity drives me — whether I'm teaching kids on the ice rink, sketching at night, or exploring new cultures, each experience shapes my creative voice. At heart, I'm both designer and storyteller, using visuals to move people and spark fresh ways of thinking.
-            </p>
-          </div>
-          <div class="cv">
-            <div class="education">
-                <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
-                <p>
-                    <span style="font-size: 48px; font-weight: bold;">My Education</span><br>
-                    <strong>2024 – Present | BA in Multimedia Art (Focus: Communication Design)</strong><br>
-                    University of Applied Sciences, Salzburg, Austria<br>
-                    Focused on branding, visual storytelling, editorial design, and digital media.<br>
-                    <br>
-                    <strong>2018 – 2023 | Higher Technical School Leonding, Austria</strong><br>
-                    Specialization in IT and Media Technology<br>
-                    Studied multimedia production, web development, and technical design,
-                    gaining a strong foundation in both technology and creative media.
-                </p>
-            </div>
-            <div class="education">
-                <p>
-                    <span style="font-size: 48px; font-weight: bold;">My Work Experience</span><br>
-                    <strong>2023–2024 | Waitress – Gasthaus Cagitz, Austria</strong><br>
-                    Developed strong communication, teamwork, and organizational skills while working in a fast-paced environment.<br>
-                    Learned to manage multiple tasks efficiently and provide excellent customer service.<br>
-                    <br>
-                    <strong>2022 | Internship – Sparkasse OÖ, Austria</strong><br>
-                    Diploma project focused on UI/UX design and frontend development for the internal project management system.<br>
-                    Designed user interfaces and optimized user experience for internal workflows.<br>
-                    <br>
-                    <strong>2020 | Internship – BMT Linz, Austria</strong><br>
-                    Assisted with IT systems and printer management, gaining technical and problem-solving skills.<br>
-                </p>
-                   <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
-            </div>
-            <div class="skills">
-                <p>
-                    <span style="font-size: 48px; font-weight: bold;">My Skills</span><br>
-                    <strong>Photography & Storytelling</strong> - Capturing moments and creating visual narratives that engage and inspire<br>
-                    <br>
-                    <strong>Graphic & Motion Design</strong> - Branding, editorial, digital media, and dynamic animations</strong><br>
-                    <br>
-                    <strong>UI/UX Design</strong> - Designing intuitive and user-friendly interfaces<br>
-                    <br>
-                    <strong>Video & Film Production</strong> - Shooting, editing, and producing impactful videos<br>
-                    <br>
-                    <strong>Creative Thinking & Collaboration</strong> - Generating innovative concepts and working effectively in teams<br>
-                    <br>
-                    <strong>Programming</strong> - Java, HTML, CSS, JavaScript, Angular<br>
-                    <br>
-                    <strong>Software & Tools</strong> - Adobe Illustrator, Photoshop, InDesign, After Effects, Premiere, Figma, Canva, DaVinci Resolve
-                </p>
-                <img src="assets/skills.png" alt="Skills Illustration">
-            </div>
-          </div>
+        </div>
           <footer>
             <div class="slogan"><p>Annika.</p></div>
             <div class="socials">
