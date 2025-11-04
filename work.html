@@ -14,7 +14,6 @@
             font-family: 'Helvetica', serif;
             overflow-x: hidden;
             background-color: white;
-
         }
 
         /* Main Content */
@@ -108,6 +107,33 @@
             100% { padding-left: 10%; }
         }
 
+        .work-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            gap: 30px;
+        }
+
+        .work-title {
+            font-size: 40px;
+            width: 100%;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        .work-description {
+            font-size: 20px;
+            font-weight: 300;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 100px;
+        }
+
+        .images {
+            width: 90vw;
+        }
+
         /* Footer */
         .footer {
             display: flex;
@@ -135,70 +161,200 @@
             height: 36px;
       
         }
+    
     </style>
 </head>
 <script>
-    const workData = {
-        jazz: {
-            title: "Jazz Festival Saalfelden",
-            description: "As part of a design competition within our degree program, I developed a visual concept for the Saalfelden Jazz Festival. <br><br>My initial approach was inspired by the map of Saalfelden, representing place, connection, and local identity.<br>The core idea, however, evolved from the imagery of footprints as a metaphor for diversity, togetherness, dance, and joy. The design translates the movement and rhythm of jazz into a dynamic visual language.<br><br>The concept was produced in multiple formats and was awarded second place in the competition.",
-            imageContent: ["assets/works/jazz.png"]
-        },
-        gaze: {
-            title: "The Gaze",
-            description: "A campaine against the Male Gaze. Button’s for woman who want to show that it is not okay to stare.",
-            images: ["assets/works/gaze.png"]
-        },
-        time: {
-            title: "Time",
-            description: "Time is so many things. It can not be described by one.",
-            images: ["assets/works/time.png"]
-        },
-        smoke: {
-            title: "My NoGo’s",
-            description: "What I really don’t like.",
-            images: ["assets/works/smoke.png"]
-        },
-        feet: {
-            title: "Photography",
-            description: "Love to Photgraphy important moments",
-            images: ["assets/works/feet.png"]
-        },
-        batman: {
-            title: "Branding",
-            description: "A Branding for The Batman",
-            images: ["assets/works/batman.png"]
-        },
-        ivy: {
-            title: "Logo for Ivy & Cloud",
-            description: "A fictive skincare brand.",
-            images: ["assets/works/ivy.png"]
-        },
-        field: {
-            title: "Website",
-            description: "Website for flowers",
-            images: ["assets/works/field.png"]
-        },
-        alva: {
-            title: "Logo",
-            description: "Logo for a fashion brand",
-            images: ["assets/works/alva.png"]
-        },
-        ac: {
-            title: "Logo for Ivy & Cloud",
-            description: "A fictive skincare brand.",
-            images: ["assets/works/ac.png"]
+    window.onload = function() {
+        const workData = {
+            jazz: {
+                title: "Jazz Festival Saalfelden",
+                description: "As part of a design competition within our degree program, I developed a visual concept for the Saalfelden Jazz Festival. <br><br>My initial approach was inspired by the map of Saalfelden, representing place, connection, and local identity.<br>The core idea, however, evolved from the imagery of footprints as a metaphor for diversity, togetherness, dance, and joy. The design translates the movement and rhythm of jazz into a dynamic visual language.<br><br>The concept was produced in multiple formats and was awarded second place in the competition.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-between; gap: 50px;">
+                    <img style="width:90vw" src="assets/work/jazz/1.png" />
+                    <img style="width:43vw" src="assets/work/jazz/2.png" />
+                    <img style="width:43vw" src="assets/work/jazz/3.png" />
+                    <img style="width:20vw" src="assets/work/jazz/4.png" />
+                    <img style="width:35vw" src="assets/work/jazz/5.png" />
+                    <img style="width:25vw" src="assets/work/jazz/6.png" />
+                </div>
+                `
+            },
+            gaze: {
+                title: "GegenBlick. (english: returning gaze)",
+                description: "The project explores the phenomenon of the “male gaze” and the everyday objectification of women.<br>Through individually designed buttons placed deliberately at key points of view, a visual dialogue around the topic emerges.<br>Each design becomes a statement of self-determination, visibility, and boundaries. Wordless, yet powerfully clear.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                    <img style="width:23.5vw" src="assets/work/gaze/1.png" />
+                    <img style="width:23.5vw" src="assets/work/gaze/2.png" />
+                    <img style="width:23.5vw" src="assets/work/gaze/3.png" />
+                    <div style=" display:flex flex-direction: row">
+                        <img style="width:37.5vw" src="assets/work/gaze/4.png" />
+                        <img style="width:37.5vw" src="assets/work/gaze/5.png" />
+                    </div>
+                    <img style="width:75vw" src="assets/work/gaze/6.png" />
+                </div>
+                `
+            },
+            time: {
+                title: "Time Poster Series",
+                description: "A poster series exploring the concept of time through black, white, and red. Each poster represents a different aspect or perception of time, using bold contrasts and minimalist design to create a striking visual narrative.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                    <img style="width:22.5vw" src="assets/work/time/1.png" />
+                    <img style="width:22.5vw" src="assets/work/time/2.png" />
+                    <img style="width:22.5vw" src="assets/work/time/3.png" />
+                    <img style="width:22.5vw" src="assets/work/time/4.png" />
+                    <img style="width:22.5vw" src="assets/work/time/5.png" />
+                    <img style="width:22.5vw" src="assets/work/time/6.png" />
+                    <img style="width:22.5vw" src="assets/work/time/7.png" />
+                    <img style="width:22.5vw" src="assets/work/time/8.png" />
+                    <img style="width:22.5vw" src="assets/work/time/9.png" />
+                    <img style="width:22.5vw" src="assets/work/time/10.png" />
+                    <img style="width:22.5vw" src="assets/work/time/11.png" />
+                </div>
+                `
+            },
+            nogo: {
+                title: "My NoGo’s Poster Series",
+                description: "A visual exploration of three personal “no-gos”. Ghosting in our digital society, the screeching sound of a plate or blackboard, and animal cruelty. Each poster approaches its topic with a distinct visual language, reflecting emotional reactions from discomfort to rejection.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                    <img style="width:22.5vw" src="assets/work/nogo/1.png" />
+                    <img style="width:22.5vw" src="assets/work/nogo/2.png" />
+                    <img style="width:22.5vw" src="assets/work/nogo/3.png" />
+                </div>
+                `
+            },
+            portrait: {
+                title: "Portrait photography",
+                description: "",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 10px;">
+                    <img style="width:40vw" src="assets/work/portrait/1.png" />
+                    <img style="width:40vw"src="assets/work/portrait/2.png" />
+                    <img style="width:40vw" src="assets/work/portrait/3.png" />
+                    <img style="width:40vw" src="assets/work/portrait/4.png" />
+                </div>
+                `
+            },
+            baerbel: {
+                title: "Branding for Bärbel’s Creative World",
+                description: "Logo and Card Design for a Small Crochet Brand - A playful logo featuring a pink heart made of yarn and a crochet hook — expressing warmth, creativity, and love for handmade craft.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                    <img style="width:42.5vw" src="assets/work/baerbel/1.png" />
+                    <img style="width:42.5vw" src="assets/work/baerbel/2.png" />
+                    <img style="width:42.5vw" src="assets/work/baerbel/3.png" />
+                </div>
+                `
+            },
+            food: {
+                title: "Food Photography",
+                description: "",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 20px;">
+                    <img style="width:42.5vw" src="assets/work/food/1.png" />
+                    <img style="width:42.5vw" src="assets/work/food/2.png" />
+                    <img style="width:42.5vw" src="assets/work/food/3.png" />
+                    <img style="width:42.5vw" src="assets/work/food/4.png" />
+                    <img style="width:42.5vw" src="assets/work/food/5.png" />
+                    <img style="width:42.5vw" src="assets/work/food/6.png" />
+                </div>
+                `
+            },
+            website: {
+                title: "Website and Menu/Event Designs for Gasthaus Cagitz",
+                description: "Redesign of the Gasthaus Cagitz website with a fresh, modern interface and new photography that captures the cozy atmosphere and authentic charm of the restaurant.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                    <img style="width: 85vw" src="assets/work/website/1.png" />
+                    <img style="width:41vw" src="assets/work/website/2.png" />
+                    <img style="width:41vw" src="assets/work/website/3.png" />
+                    <img style="width:27.5vw" src="assets/work/website/4.png" />
+                    <img style="width:27.5vw" src="assets/work/website/5.png" />
+                    <img style="width:22.5vw" src="assets/work/website/6.png" />
+                    <img style="width:37.5vw" src="assets/work/website/7.png" />
+                    <img style="width:37.5vw" src="assets/work/website/8.png" />
+                </div>
+                `
+            },
+            ice: {
+                title: "Figure Skating Photoshoot",
+                description: "A professional photoshoot with Austrian national skater Hannah Frank, capturing the grace, power, and elegance of figure skating. The images highlight movement, expression, and the artistry of the sport.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 20px;">
+                    <img style="width:27.5vw" src="assets/work/ice/1.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/2.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/3.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/4.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/5.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/6.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/7.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/8.png" />
+                    <img style="width:27.5vw" src="assets/work/ice/9.png" />
+                </div>
+                `
+            },
+            baby: {
+                title: "Baby Belly Photoshoot",
+                description: "A maternity photoshoot capturing the beauty, intimacy, and anticipation of pregnancy. Focused on natural poses, soft lighting, and emotional connection to highlight this special moment in life.",
+                imageHtml: `
+                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-between; gap: 50px;">
+                    <img style="width:27.5vw" src="assets/work/baby/1.png" />
+                    <img style="width:27.5vw" src="assets/work/baby/2.png" />
+                    <img style="width:27.5vw" src="assets/work/baby/3.png" />
+                    <img style="width:43vw" src="assets/work/baby/4.png" />
+                    <img style="width:43vw" src="assets/work/baby/5.png" />
+                    <img style="width:27.5vw" src="assets/work/baby/6.png" />
+                    <img style="width:27.5vw" src="assets/work/baby/7.png" />
+                    <img style="width:27.5vw" src="assets/work/baby/8.png" />
+                </div>
+                `
+            }
+        };
+        let currentWork = new URLSearchParams(window.location.search).get("work") ?? "default";
+        let work = workData[currentWork];
+    
+        if (currentWork === "jazz" || currentWork === "nogo" || currentWork === "portrait" || currentWork === "food") {            
+            let body = document.getElementsByTagName("body")[0];
+            let nav = document.getElementsByTagName("nav")[0];
+            let mainContent = document.getElementById("main-content");
+            mainContent.style.color = "white";
+            body.style.backgroundColor = "black";
+            body.style.color = "white";
+            nav.style.backgroundColor = "black";
+
+            // this does not work
+            document.querySelectorAll("nav a").forEach(link => {
+                link.style.color = "white";
+            });
+            document.querySelectorAll("socials img").forEach(icon => {
+                icon.style.filter = "invert(1)";
+            });
+            document.querySelectorAll(".hover-underline-animation::after").forEach(underline => {
+                underline.style.backgroundColor = "white";
+            });
         }
+        document.querySelector(".work-title").textContent = work.title;
+        document.querySelector(".work-description").innerHTML = work.description;
+        if (work.description === "") {
+            document.querySelector(".work-description").style.display = "none";
+        }
+        let imagesContainer = document.querySelector(".images");
+        imagesContainer.innerHTML = work.imageHtml;
     };
-    let currentWork = new URLSearchParams(window.location.search).get("work");
+
+
 </script>
 <body>
     <div id="main-content">
         <nav>
             <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
             <div class="nav-content">
-                <a href=""><p class="hover-underline-animation left highlight">ABOUT ME</p></a>
-                <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
+                <a href=""><p class="hover-underline-animation left">ABOUT ME</p></a>
+                <a href="works.html"><p class="hover-underline-animation left highlight">WORKS</p></a>
                 <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>

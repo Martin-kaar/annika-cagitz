@@ -177,12 +177,14 @@
         }
     </style>
 </head>
-<script>
-     navigateToWork(work) 
-     {
-        window.location.href = work;
-     }
-</script>
+    <script>
+         function navigateToWork(work) 
+         {
+             console.log('test');
+            window.location.href = 'work.html?work=' + work;
+            
+         }
+    </script>
 <body>
     <div id="main-content">
         <nav>
@@ -197,7 +199,7 @@
         <div class="works">
             <div class="work">
                 <div class="image-wrapper">
-                    <img src="assets/works/jazz.png">
+                    <img (click)="navigateToWork('jazz')" src="assets/works/jazz.png">
                 </div>
                 <div class="work-description">
                     <h1>Jazz Festival Saalfelden</h1>
@@ -205,7 +207,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('gaze')" class="image-wrapper">
                     <img src="assets/works/gaze.png">
                 </div>
                 <div class="work-description" style="width: 580px;">
@@ -214,7 +216,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('time')" class="image-wrapper">
                     <img src="assets/works/time.png">
                 </div>
                 <div class="work-description">
@@ -223,7 +225,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('nogo')" class="image-wrapper">
                     <img src="assets/works/nogo.png">
                 </div>
                 <div class="work-description">
@@ -232,7 +234,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('portrait')" class="image-wrapper">
                     <img src="assets/works/portrait.png">
                 </div>
                 <div class="work-description">
@@ -240,7 +242,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('baerbel')" class="image-wrapper">
                     <img src="assets/works/baerbel.png">
                 </div>
                 <div class="work-description">
@@ -248,7 +250,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('food')" class="image-wrapper">
                     <img src="assets/works/food.png">
                 </div>
                 <div class="work-description">
@@ -256,7 +258,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('cagitz')" class="image-wrapper">
                     <img src="assets/works/cagitz.png">
                 </div>
                 <div class="work-description">
@@ -265,7 +267,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('ice')" class="image-wrapper">
                     <img src="assets/works/ice.png">
                 </div>
                 <div class="work-description">
@@ -274,7 +276,7 @@
                 </div>
             </div>
             <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('flower')" class="image-wrapper">
                     <img src="assets/works/flower.png">
                 </div>
                 <div class="work-description">
@@ -283,7 +285,7 @@
                 </div>
             </div>
              <div class="work">
-                <div class="image-wrapper">
+                <div (click)="navigateToWork('baby')" class="image-wrapper">
                     <img src="assets/works/baby.png">
                 </div>
                 <div class="work-description">
