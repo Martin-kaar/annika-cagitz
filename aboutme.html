@@ -227,6 +227,61 @@
             height: 36px;
       
         }
+
+        @media only screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .nav-content {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .text-section h1 {
+                font-size: 80px;
+                text-align: center;
+            }
+            
+            .text-section {
+                padding-left: 0;
+                animation: none;
+            -webkit-animation: none;
+            }
+
+            .slogan-container {
+                display: flex;
+                flex-direction: column;
+
+                height: auto;
+            }
+
+             .slogan-container img {
+                display: none;
+            }
+
+            .education img {
+                display: none;
+            }
+
+            .skills img {
+                display: none;
+            }
+
+            .cv {
+                margin: 15px;
+            }
+        }
     </style>
 </head>
 <body>
