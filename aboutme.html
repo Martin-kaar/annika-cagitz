@@ -30,7 +30,7 @@
         /* Main Content */
         #main-content {
             position: relative;
-            min-height: 100vh;
+            min-height: 40vh;
             z-index: 10;
             color: black;
         }
@@ -95,16 +95,17 @@
 
         /* About me slogan */
         .slogan-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
             height: 100vh;
             align-items: center;
+            justify-content: center;
             padding: 0 5%;
         }
 
         .text-section {
             z-index: 100;
-            width: 60vw;
             padding-left: -10%;
             animation: slide-right 0.5s forwards;
             -webkit-animation: slide-right 0.5s forwards;
@@ -122,6 +123,7 @@
             font-size: 300px;
             font-weight: 400;
             margin: 0;
+            padding-right: 30px;
         }
 
         .text-section h1 span {
@@ -135,39 +137,11 @@
             font-weight: 100;
         }
 
-        .image-section {
-            right: -150px;
-            margin-right: 20%;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: slide-left 0.5s forwards;
-            -webkit-animation: slide-left 0.5s forwards;
-            z-index: -1;
-        }
-
-
-        @-webkit-keyframes slide-left {
-            100% { right: 0; }
-        }
-
-        @keyframes slide-left {
-            100% { right: 0; }
-        }
-
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
         .description {
-            max-width: 1000px;
-            margin: 150px auto;
             font-size: 20px;
             line-height: 1.6;
             padding: 0 20px;
+            margin: 10vw 10vw 150px 10vw;
         }
 
         .cv {
@@ -175,7 +149,6 @@
             justify-content: center;
             flex-direction: column;
             gap: 100px;
-            margin: 0 150px 150px 150px;
         }
 
         .education {
@@ -184,6 +157,13 @@
             justify-content: center;
             align-items: center;
             gap: 24px;
+            margin: 1vw 10vw 1vw 10vw;
+        }
+
+        .education img {
+            width: 20vw;
+            height: auto;
+            object-fit: contain;
         }
 
         .skills {
@@ -191,13 +171,13 @@
             flex-direction: row;
             justify-content: center;
             gap: 24px;
+            margin: 1vw 10vw 1vw 10vw;
         }
 
-        .skill img {
-            position: absolute;
-            width: 300px;
+        .skills img {
+            width: 20vw;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         /* Footer */
@@ -228,6 +208,31 @@
       
         }
 
+        .aboutbanner {
+            right: -150px;
+            margin-right: 10vw;
+            width: 40vw;
+            position: absolute;
+            animation: slide-left 0.5s forwards;
+            -webkit-animation: slide-left 0.5s forwards;
+        }
+
+
+        @-webkit-keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        @keyframes slide-left {
+            100% { right: 0; }
+        }
+
+        .slogan-content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
         @media only screen and (max-width: 768px) {
             nav {
                 display: flex;
@@ -251,6 +256,7 @@
             .text-section h1 {
                 font-size: 80px;
                 text-align: center;
+                padding-right: 0;
             }
             
             .text-section {
@@ -287,7 +293,7 @@
 <body>
     <div id="main-content">
         <nav>
-            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">annika.</p></a></div>
             <div class="nav-content">
                 <a href=""><p class="hover-underline-animation left highlight">ABOUT ME</p></a>
                 <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
@@ -296,12 +302,11 @@
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
         <div class="slogan-container">
-            <div class="text-section">
-              <h1>annika.</h1>
-            </div>
-        
-            <div class="image-section">
-              <img src="assets/about.png" alt="Annika Cagitz Portrait">
+            <div class="slogan-content-wrapper">
+                <div class="text-section">
+                  <h1>annika.</h1>
+                </div>
+                <img class="aboutbanner" src="assets/about.png" alt="Annika Cagitz Portrait">
             </div>
           </div>
           <div class="description">
@@ -314,7 +319,7 @@
           </div>
           <div class="cv">
             <div class="education">
-                <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+                <img src="assets/education.png" alt="education Illustration">
                 <p>
                     <span style="font-size: 48px; font-weight: bold;">My Education</span><br>
                     <strong>2024 – Present | BA in Multimedia Art (Focus: Communication Design)</strong><br>
@@ -341,7 +346,7 @@
                     <strong>2020 | Internship – BMT Linz, Austria</strong><br>
                     Assisted with IT systems and printer management, gaining technical and problem-solving skills.<br>
                 </p>
-                   <img src="assets/hs-leonding.png" alt="HTL Leonding Logo">
+                   <img src="assets/experience.png" alt="experience Illustration">
             </div>
             <div class="skills">
                 <p>
@@ -368,7 +373,6 @@
             <div class="socials">
                     <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                     <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
-                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
             </div>
         </footer>
     </div>

@@ -23,10 +23,7 @@
         body {
             font-family: 'Helvetica', serif;
             text-transform: uppercase;
-            background: linear-gradient(180deg, 
-                hsl(var(--wall-color)) 0%, 
-                hsl(var(--wall-color) / 0.8) 50%, 
-                hsl(var(--wall-color) / 0.6) 100%);
+            background: black;
             overflow-x: hidden;
         }
 
@@ -348,7 +345,7 @@
             position: relative;
             margin-top: 250vh;
             min-height: 100vh;
-            padding: 80px 20px;
+            padding: 20px 20px 0 20px;
             z-index: 10;
             background-color: black;
             color: white;
@@ -377,6 +374,60 @@
         .nav-content {
             display: flex;
             gap: 20px;
+        }
+
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 80vh;
+        }
+
+        .intro img {
+            width: 30vw;
+            height: auto;
+            object-fit: contain;
+            position: absolute;
+            left: 12.5vw;
+        }
+
+        .intro h1 {
+            font-size: 64px;
+            font-weight: 300;
+            line-height: normal;
+            text-align: center;
+            letter-spacing: uppercase;
+            z-index: 100;
+        }
+
+        @media screen and (max-width: 768px) {
+            .intro {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                height: 70vh;
+                gap: 20px;
+            }
+
+            .intro img {
+                width: 60%;
+                height: auto;
+                object-fit: contain;
+                position: relative;
+                left: 0;
+            }
+
+            .intro h1 {
+                font-size: 38px;
+                font-weight: 300;
+                line-height: normal;
+                text-align: center;
+                letter-spacing: uppercase;
+                z-index: 100;
+            }
         }
 
         /* Nav animation */
@@ -520,30 +571,30 @@
 
         /* Banner */
         .banner {
-            margin-top: 250px;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
             width: 100%;
-            font-size: 64px;
+            font-size: 36px;
+            font-weight: 300;
             word-wrap: break-word;
+            text-transform: uppercase;
         }
 
         .banner-text {
-            max-width: 800px;
+            max-width: 1100px;
             text-align: center;
             line-height: 1.2;
-            font-weight: 100;
+            font-weight: 300;
+            letter-spacing: -0.72px;
+            text-align: left;
         }
 
-        .banner-image {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-top: 200px;
-        }
-
-        .banner-image img {
-            width: 100%;
+        .banner-text img {
+            width: 60px;
+            height: 50px;
+            object-fit: contain;
+            padding-top: 10px;
         }
 
 /* Slideshow */
@@ -736,7 +787,7 @@
     <!-- Main Content -->
     <div id="main-content">
         <nav>
-            <div class="nav-logo"><a href=""><p class="hover-underline-animation left">A.C.</p></a></div>
+            <div class="nav-logo"><a href=""><p class="hover-underline-animation left">annika.</p></a></div>
             <div class="nav-content">
                 <a href="aboutme.html"><p class="hover-underline-animation left">About me</p></a>
                 <a href="works.html"><p class="hover-underline-animation left">Works</p></a>
@@ -744,37 +795,17 @@
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">Contact</p></a></div>
         </nav>
+        <div class="intro">
+            <h1>BRINGING <i>stories</i> to life<br>through <i>design</i> that speaks<br> to the heart.</h1>
+            <img src="assets/intro.png" alt="intro.png">
+        </div>
         <div class="banner">
             <div class="banner-text">
-                A <i>CREATIVE</i> DIRECTOR, GRAPHIC DESIGNER AND <i>PHOTOGRAPHER</i> BORN AND RAISED IN AUSTRIA.
+                “Stories <img src="assets/stories.png" alt="stories"> are my <i>inspiration</i>, design is my voice. <img src="assets/kiss.png" alt="voices"><br>
+                I love shaping moments <img src="assets/moments.png" alt="moments"> into visuals that stay with people.<br>
+                My goal is to grow <img src="assets/grow.png" alt="grow"> as a designer who shapes ideas into impactful stories.<br>
+                Art direction and editorial design are the paths where I see my future. <img src="assets/future.png" alt="future">”
             </div>
-        </div>
-        <div class="text-slider-container">
-            <div class="text-slider">
-                <div class="text-line">
-                    <div class="text-track" id="track1">
-                        <!-- Content will be added by JavaScript -->
-                    </div>
-                </div>
-                <div class="text-line">
-                    <div class="text-track reverse" id="track2">
-                        <!-- Content will be added by JavaScript -->
-                    </div>
-                </div>
-                <div class="text-line">
-                    <div class="text-track" id="track3">
-                        <!-- Content will be added by JavaScript -->
-                    </div>
-                </div>
-                <div class="text-line">
-                    <div class="text-track reverse" id="track4">
-                        <!-- Content will be added by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="banner-image">
-            <img src="assets/banner.png" alt="Banner image">
         </div>
 
         <div class="slideshow-container">
@@ -789,7 +820,6 @@
             <div class="socials">
                     <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                     <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
-                    <a href="mailto:annika.cagitzz@gmail.com" target="_blank" rel="noopener noreferrer"><img src="assets/mail.png" alt="mail"></a>
             </div>
         </footer>
     </div>
@@ -1026,51 +1056,6 @@
         // Initial state
         handleScroll();
     </script>
-        <script>
-            // Text content
-            const text = "A CREATIVE DIRECTOR, GRAPHIC DESIGNER AND PHOTOGRAPHER BORN AND RAISED IN AUSTRIA.";
-            
-            // Split text into parts for different lines
-            const textParts = [
-                "A CREATIVE DIRECTOR,",
-                "GRAPHIC DESIGNER",
-                " AND PHOTOGRAPHER",
-                "BORN AND RAISED IN AUSTRIA"
-            ];
-            
-            // Function to create duplicated text for infinite scroll
-            function createInfiniteText(trackId, textContent) {
-                const track = document.getElementById(trackId);
-                
-                // Create multiple copies for seamless loop
-                // We need at least 2 copies to ensure smooth infinite scroll
-                for (let i = 0; i < 2; i++) {
-                    const span = document.createElement('span');
-                    span.className = 'text-content';
-                    span.textContent = textContent + '';
-                    track.appendChild(span);
-                    
-                    // Clone for seamless effect
-                    const clone = span.cloneNode(true);
-                    track.appendChild(clone);
-                }
-            }
-            
-            // Initialize all tracks
-            createInfiniteText('track1', textParts[0]);
-            createInfiniteText('track2', textParts[1]);
-            createInfiniteText('track3', textParts[2]);
-            createInfiniteText('track4', textParts[3]);
-
-            
-            // Dynamic speed adjustment based on text length
-            const tracks = document.querySelectorAll('.text-track');
-            tracks.forEach((track, index) => {
-                const textLength = textParts[index % textParts.length].length;
-                const duration = Math.max(20, textLength * 0.5); // Adjust speed based on text length
-                track.style.animationDuration = duration + 's';
-            });
-        </script>
 </body>
 </html>
 ``` 
