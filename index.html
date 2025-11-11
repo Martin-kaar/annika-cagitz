@@ -398,6 +398,7 @@
             line-height: normal;
             text-align: center;
             letter-spacing: uppercase;
+            z-index: 100;
         }
 
         @media screen and (max-width: 768px) {
@@ -719,6 +720,30 @@
             filter: invert(1);
         }
 
+                /* Parallax & reveal styles */
+        [data-parallax] {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.995);
+            transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* subtle 3D tilt while scrolling for the slogan container */
+        .slogan-container.tilt {
+            transform-origin: center center;
+            will-change: transform;
+        }
+
          @media only screen and (max-width: 768px) {
             nav {
                 display: flex;
@@ -794,11 +819,11 @@
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">Contact</p></a></div>
         </nav>
-        <div class="intro">
+        <div class="intro scroll-reveal">
             <h1>BRINGING <i>stories</i> to life<br>through <i>design</i> that speaks<br> to the heart.</h1>
             <img src="assets/intro.png" alt="intro.png">
         </div>
-        <div class="banner">
+        <div class="banner scroll-reveal">
             <div class="banner-text">
                 “Stories <img src="assets/stories.png" alt="stories"> are my <i>inspiration</i>, design is my voice. <img src="assets/kiss.png" alt="voices"><br>
                 I love shaping moments <img src="assets/moments.png" alt="moments"> into visuals that stay with people.<br>
@@ -807,7 +832,7 @@
             </div>
         </div>
 
-        <div class="slideshow-container">
+        <div class="slideshow-container scroll-reveal">
             <div class="slideshow-wrapper">
                 <div id="slideshowTrack" class="slideshow-track">
                     <!-- Slides will be dynamically generated -->
@@ -1054,6 +1079,54 @@
         
         // Initial state
         handleScroll();
+    </script>
+        <script>
+        // Parallax + scroll-reveal controller
+        (function(){
+            const easing = v => v; // placeholder
+            let lastScroll = window.scrollY || 0;
+            let rAF = null;
+
+            const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+            const revealEls = Array.from(document.querySelectorAll('.scroll-reveal'));
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const velocity = scrollY - lastScroll;
+
+                // parallax transforms
+                parallaxEls.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    // translateY based on scroll and element's speed
+                    const y = Math.round(scrollY * speed);
+                    // small parallax plus slight skew based on velocity
+                    const skew = Math.max(-6, Math.min(6, velocity * 0.02));
+                    el.style.transform = `translate3d(0, ${y}px, 0) skewY(${skew}deg)`;
+                });
+
+                lastScroll = scrollY;
+                rAF = null;
+            }
+
+            function schedule() {
+                if (rAF) return;
+                rAF = requestAnimationFrame(update);
+            }
+
+            // reveal via intersection observer
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in-view');
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => io.observe(el));
+
+            // initial schedule and events
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            // run once to set positions
+            schedule();
+        })();
     </script>
 </body>
 </html>

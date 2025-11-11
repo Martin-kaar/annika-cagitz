@@ -111,23 +111,13 @@
             height: 36px;
             filter: invert(1);
         }
-        @-webkit-keyframes slide-top {
-            100% { padding-top: 0%; }
-        }
-
-        @keyframes slide-top {
-            100% { padding-top: 0%; }
-        }
-
         .works {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 15px;
-            padding: 10% 7%;
-            animation: slide-top 0.5s forwards;
-            -webkit-animation: slide-top 0.5s forwards;
+            padding: 0% 7%;
         }
 
         .work {
@@ -175,6 +165,52 @@
         .image-wrapper img:hover {
             transform: scale(1.25);
         }
+                /* Parallax & reveal styles */
+        [data-parallax] {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.995);
+            transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+         @media only screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .nav-content {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .image-wrapper {
+                height: auto;
+            }
+        }
     </style>
 </head>
     <script>
@@ -196,26 +232,26 @@
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
-        <div class="works">
-            <div class="work">
-                <div class="image-wrapper">
-                    <img onclick="navigateToWork('jazz')" src="assets/works/jazz.png">
+        <div class="works scroll-reveal">
+            <div class="work scroll-reveal">
+                <div onclick="navigateToWork('jazz')" class="image-wrapper">
+                    <img src="assets/works/jazz.png">
                 </div>
                 <div class="work-description">
                     <h1>Jazz Festival Saalfelden</h1>
                     <p>Visuals for the Jazz Festival 2026 in Saalfelden.</p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('gaze')" class="image-wrapper">
                     <img src="assets/works/gaze.png">
                 </div>
-                <div class="work-description" style="width: 580px;">
+                <div class="work-description" style="max-width: 580px;">
                     <h1>GegenBlick. (english: returning gaze)</h1>
                     <p >A campaign against the Male Gaze. Button’s for woman who want to show that it is not okay to stare.</p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('time')" class="image-wrapper">
                     <img src="assets/works/time.png">
                 </div>
@@ -224,7 +260,7 @@
                     <p>Time is so many things. It can not be described by one.</p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('nogo')" class="image-wrapper">
                     <img src="assets/works/nogo.png">
                 </div>
@@ -233,7 +269,7 @@
                     <p>What I really don’t like.</p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('portrait')" class="image-wrapper">
                     <img src="assets/works/portrait.png">
                 </div>
@@ -241,7 +277,7 @@
                     <h1>Portrait photography</h1>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('baerbel')" class="image-wrapper">
                     <img src="assets/works/baerbel.png">
                 </div>
@@ -249,7 +285,7 @@
                     <h1>Branding for Bärbel’s Creative World</h1>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('food')" class="image-wrapper">
                     <img src="assets/works/food.png">
                 </div>
@@ -257,7 +293,7 @@
                     <h1>Food photography</h1>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('cagitz')" class="image-wrapper">
                     <img src="assets/works/cagitz.png">
                 </div>
@@ -266,7 +302,7 @@
                     <p>Redesign of the Gasthaus Cagitz website </p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('ice')" class="image-wrapper">
                     <img src="assets/works/ice.png">
                 </div>
@@ -275,7 +311,7 @@
                     <p>A photoshoot with Austrian national skater Hannah Frank</p>
                 </div>
             </div>
-            <div class="work">
+            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('flower')" class="image-wrapper">
                     <img src="assets/works/flower.png">
                 </div>
@@ -284,7 +320,7 @@
                     <p>In process ...</p>
                 </div>
             </div>
-             <div class="work">
+             <div class="work scroll-reveal">
                 <div onclick="navigateToWork('baby')" class="image-wrapper">
                     <img src="assets/works/baby.png">
                 </div>
@@ -302,5 +338,53 @@
             </div>
         </footer>
     </div>
+        <script>
+        // Parallax + scroll-reveal controller
+        (function(){
+            const easing = v => v; // placeholder
+            let lastScroll = window.scrollY || 0;
+            let rAF = null;
+
+            const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+            const revealEls = Array.from(document.querySelectorAll('.scroll-reveal'));
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const velocity = scrollY - lastScroll;
+
+                // parallax transforms
+                parallaxEls.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    // translateY based on scroll and element's speed
+                    const y = Math.round(scrollY * speed);
+                    // small parallax plus slight skew based on velocity
+                    const skew = Math.max(-6, Math.min(6, velocity * 0.02));
+                    el.style.transform = `translate3d(0, ${y}px, 0) skewY(${skew}deg)`;
+                });
+
+                lastScroll = scrollY;
+                rAF = null;
+            }
+
+            function schedule() {
+                if (rAF) return;
+                rAF = requestAnimationFrame(update);
+            }
+
+            // reveal via intersection observer
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in-view');
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => io.observe(el));
+
+            // initial schedule and events
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            // run once to set positions
+            schedule();
+        })();
+    </script>
 </body>
 </html>

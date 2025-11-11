@@ -102,21 +102,8 @@
             align-items: center;
             justify-content: center;
             padding: 0 5%;
-        }
-
-        .text-section {
-            z-index: 100;
-            padding-left: -10%;
-            animation: slide-right 0.5s forwards;
-            -webkit-animation: slide-right 0.5s forwards;
-        }
-
-        @-webkit-keyframes slide-right {
-            100% { padding-left: 10%; }
-        }
-
-        @keyframes slide-right {
-            100% { padding-left: 10%; }
+            animation: slide-top 0.5s forwards;
+            -webkit-animation: slide-top 0.5s forwards;
         }
 
         .text-section h1 {
@@ -170,6 +157,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
+            align-items: center;
             gap: 24px;
             margin: 1vw 10vw 1vw 10vw;
         }
@@ -232,6 +220,22 @@
             align-items: center;
         }
 
+        .slogan-content-wrapper img {
+            width: 100%;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.995);
+            transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
 
         @media only screen and (max-width: 768px) {
             nav {
@@ -272,16 +276,27 @@
                 height: auto;
             }
 
-             .slogan-container img {
-                display: none;
+            .education {
+                flex-direction: column;
             }
-
             .education img {
-                display: none;
+            width: 80vw;
+            height: auto;
+            object-fit: contain;
+        }
+
+            .skills {
+                flex-direction: column;
             }
 
             .skills img {
-                display: none;
+            width: 80vw;
+            height: auto;
+            object-fit: contain;
+        }
+
+             .slogan-container img {
+                width: 100%;
             }
 
             .cv {
@@ -302,14 +317,11 @@
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
         <div class="slogan-container">
-            <div class="slogan-content-wrapper">
-                <div class="text-section">
-                  <h1>annika.</h1>
-                </div>
-                <img class="aboutbanner" src="assets/about.png" alt="Annika Cagitz Portrait">
+            <div class="slogan-content-wrapper scroll-reveal">
+                <img src="assets/about.png" alt="Annika Cagitz Portrait">
             </div>
           </div>
-          <div class="description">
+          <div class="description scroll-reveal">
             <p>
                 I'm Annika Stefanie Cagitz, a Multimedia Art student in Communication Design based in Salzburg.<br><br>
                 I'm passionate about turning ideas into visual stories that connect — blending creativity, storytelling, and problem-solving.<br>
@@ -317,8 +329,8 @@
                 Curiosity drives me — whether I'm teaching kids on the ice rink, sketching at night, or exploring new cultures, each experience shapes my creative voice. At heart, I'm both designer and storyteller, using visuals to move people and spark fresh ways of thinking.
             </p>
           </div>
-          <div class="cv">
-            <div class="education">
+        <div class="cv scroll-reveal">
+            <div class="education scroll-reveal">
                 <img src="assets/education.png" alt="education Illustration">
                 <p>
                     <span style="font-size: 48px; font-weight: bold;">My Education</span><br>
@@ -332,7 +344,7 @@
                     gaining a strong foundation in both technology and creative media.
                 </p>
             </div>
-            <div class="education">
+            <div class="education scroll-reveal">
                 <p>
                     <span style="font-size: 48px; font-weight: bold;">My Work Experience</span><br>
                     <strong>2023–2024 | Waitress – Gasthaus Cagitz, Austria</strong><br>
@@ -348,7 +360,7 @@
                 </p>
                    <img src="assets/experience.png" alt="experience Illustration">
             </div>
-            <div class="skills">
+            <div class="skills scroll-reveal">
                 <p>
                     <span style="font-size: 48px; font-weight: bold;">My Skills</span><br>
                     <strong>Photography & Storytelling</strong> - Capturing moments and creating visual narratives that engage and inspire<br>
@@ -376,5 +388,53 @@
             </div>
         </footer>
     </div>
+    <script>
+        // Parallax + scroll-reveal controller
+        (function(){
+            const easing = v => v; // placeholder
+            let lastScroll = window.scrollY || 0;
+            let rAF = null;
+
+            const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+            const revealEls = Array.from(document.querySelectorAll('.scroll-reveal'));
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const velocity = scrollY - lastScroll;
+
+                // parallax transforms
+                parallaxEls.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    // translateY based on scroll and element's speed
+                    const y = Math.round(scrollY * speed);
+                    // small parallax plus slight skew based on velocity
+                    const skew = Math.max(-6, Math.min(6, velocity * 0.02));
+                    el.style.transform = `translate3d(0, ${y}px, 0) skewY(${skew}deg)`;
+                });
+
+                lastScroll = scrollY;
+                rAF = null;
+            }
+
+            function schedule() {
+                if (rAF) return;
+                rAF = requestAnimationFrame(update);
+            }
+
+            // reveal via intersection observer
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in-view');
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => io.observe(el));
+
+            // initial schedule and events
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            // run once to set positions
+            schedule();
+        })();
+    </script>
 </body>
 </html>

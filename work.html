@@ -82,31 +82,6 @@
         transform-origin: bottom left;
         }
 
-        /* About me slogan */
-        .slogan-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            height: 100vh;
-            align-items: center;
-            padding: 0 5%;
-        }
-
-        .text-section {
-            z-index: 100;
-            width: 60vw;
-            padding-left: -10%;
-            animation: slide-right 0.5s forwards;
-            -webkit-animation: slide-right 0.5s forwards;
-        }
-
-        @-webkit-keyframes slide-right {
-            100% { padding-left: 10%; }
-        }
-
-        @keyframes slide-right {
-            100% { padding-left: 10%; }
-        }
-
         .work-content {
             display: flex;
             flex-direction: column;
@@ -161,7 +136,49 @@
             height: 36px;
       
         }
-    
+
+                        /* Parallax & reveal styles */
+        [data-parallax] {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.995);
+            transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+     @media only screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .nav-content {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 <script>
@@ -360,9 +377,10 @@
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
         <div class="work-content">
-            <h1 class="work-title"></h1>
-            <div class="work-description"></div>
-            <div class="images">
+            <p class="scroll-reveal" style="text-align: left; width: 100%; cursor: pointer; text-decoration: underline;" tabindex="0" onclick="goBack()">back</p>
+            <h1 class="work-title scroll-reveal"></h1>
+            <div class="work-description scroll-reveal"></div>
+            <div class="images scroll-reveal">
 
             </div>
         </div>
@@ -374,5 +392,58 @@
             </div>
         </footer>
     </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+            <script>
+        // Parallax + scroll-reveal controller
+        (function(){
+            const easing = v => v; // placeholder
+            let lastScroll = window.scrollY || 0;
+            let rAF = null;
+
+            const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+            const revealEls = Array.from(document.querySelectorAll('.scroll-reveal'));
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const velocity = scrollY - lastScroll;
+
+                // parallax transforms
+                parallaxEls.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    // translateY based on scroll and element's speed
+                    const y = Math.round(scrollY * speed);
+                    // small parallax plus slight skew based on velocity
+                    const skew = Math.max(-6, Math.min(6, velocity * 0.02));
+                    el.style.transform = `translate3d(0, ${y}px, 0) skewY(${skew}deg)`;
+                });
+
+                lastScroll = scrollY;
+                rAF = null;
+            }
+
+            function schedule() {
+                if (rAF) return;
+                rAF = requestAnimationFrame(update);
+            }
+
+            // reveal via intersection observer
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in-view');
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => io.observe(el));
+
+            // initial schedule and events
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            // run once to set positions
+            schedule();
+        })();
+    </script>
 </body>
 </html>

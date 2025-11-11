@@ -148,7 +148,6 @@
 
         .contact-me-wrapper h1 {
             font-size: 32px;
-            width: 450px;
             text-align: left;
         }
 
@@ -158,6 +157,7 @@
             justify-content: center;
             align-items: center;
             gap: 24px;
+            max-width: 50vw;
         }
 
         .names {
@@ -181,7 +181,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            width: 450px;
+            width: 100%;
         }
 
         .label-wrapper p {
@@ -199,11 +199,72 @@
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             font-size: 16px;
             font-weight: 500;
-            width: 450px;
+            width: 100%;
         }
 
         .button:hover {
             background-color: #333;
+        }
+
+                /* Parallax & reveal styles */
+        [data-parallax] {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.995);
+            transition: opacity 700ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1);
+            will-change: opacity, transform;
+        }
+
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* subtle 3D tilt while scrolling for the slogan container */
+        .slogan-container.tilt {
+            transform-origin: center center;
+            will-change: transform;
+        }
+         @media only screen and (max-width: 768px) {
+            nav {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .nav-content {
+                display: flex;
+                position: relative;
+                top: 0;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .contact-me-wrapper {
+                margin-bottom: 40px;
+            }
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .contact-form {
+                max-width: 100vw;
+            }
+
+            .names {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -218,33 +279,33 @@
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left highlight">CONTACT</p></a></div>
         </nav>
-        <img class="banner" src="assets/contact-banner.png" alt="banner">
-        <div class="contact-socials-wrapper">
+        <img class="banner scroll-reveal" src="assets/contact-banner.png" alt="banner">
+        <div class="contact-socials-wrapper scroll-reveal">
             <div class="contact-socials">
                 <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                 <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
             </div>
         </div>
-        <div class="contact-me-wrapper">
+        <div class="contact-me-wrapper scroll-reveal">
             <h1>Contact me</h1>
             <div class="contact-form">
                 <div class="names">
-                    <div class="label-wrapper" style="width: 209px;">
+                    <div class="label-wrapper">
                         <p>First name</p>
-                        <input id="firname-input" class="input" type="text" placeholder="Jane" style="width: 209px;"/>
+                        <input id="firname-input" class="input" type="text" placeholder="Jane"/>
                     </div>
-                    <div class="label-wrapper" style="width: 209px;">
+                    <div class="label-wrapper">
                         <p>Last name</p>
-                        <input id="lastname-input" class="input" type="text" placeholder="Smitherson" style="width: 209px;"/>
+                        <input id="lastname-input" class="input" type="text" placeholder="Smitherson"/>
                     </div>                
                 </div>
                 <div class="label-wrapper">
                     <p>Email</p>
-                    <input id="email-input" class="input" type="email" placeholder="jane.smitherson@example.com" style="width: 450px;"/>
+                    <input id="email-input" class="input" type="email" placeholder="jane.smitherson@example.com"/>
                 </div>
                 <div class="label-wrapper">
                     <p>Your message</p>
-                    <textarea id="message-input" class="input" type="email" placeholder="Enter your message here" style="width: 450px;" rows="5"></textarea>
+                    <textarea id="message-input" class="input" type="email" placeholder="Enter your message here" rows="5"></textarea>
                 </div>
                 <div onclick="sendMessage()" class="button" id="submit-button">Submit</div>
             </div>
@@ -270,6 +331,54 @@
             a.click();
         }
 
+    </script>
+        <script>
+        // Parallax + scroll-reveal controller
+        (function(){
+            const easing = v => v; // placeholder
+            let lastScroll = window.scrollY || 0;
+            let rAF = null;
+
+            const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+            const revealEls = Array.from(document.querySelectorAll('.scroll-reveal'));
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const velocity = scrollY - lastScroll;
+
+                // parallax transforms
+                parallaxEls.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    // translateY based on scroll and element's speed
+                    const y = Math.round(scrollY * speed);
+                    // small parallax plus slight skew based on velocity
+                    const skew = Math.max(-6, Math.min(6, velocity * 0.02));
+                    el.style.transform = `translate3d(0, ${y}px, 0) skewY(${skew}deg)`;
+                });
+
+                lastScroll = scrollY;
+                rAF = null;
+            }
+
+            function schedule() {
+                if (rAF) return;
+                rAF = requestAnimationFrame(update);
+            }
+
+            // reveal via intersection observer
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in-view');
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => io.observe(el));
+
+            // initial schedule and events
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            // run once to set positions
+            schedule();
+        })();
     </script>
 </body>
 </html>
