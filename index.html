@@ -704,7 +704,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-transform: capitalize;
+            text-transform: none;
             font-size: 40px;
         }
 
@@ -768,6 +768,22 @@
                 margin-top: 20px;
             }
         }
+
+        .bottom-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .bottom-nav a{
+            color: #FFF;
+            text-decoration: none;
+            font-family: Helvetica;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150%; /* 48px */
+        }
     </style>
 </head>
 <body>
@@ -776,10 +792,6 @@
         <div id="door-wrapper">
             <!-- Door Frame -->
             <div class="door-frame"></div>
-            <!-- Simple white light source -->
-            <div class="side-light side-light-1"></div>
-            <div class="side-light side-light-2"></div>
-            <div class="side-light side-light-3"></div>
             <!-- Light from behind door -->
             <div class="door-light" id="door-light"></div>
             
@@ -827,129 +839,30 @@
             <h1>BRINGING <i>stories</i> to life<br>through <i>design</i> that speaks<br> to the heart.</h1>
             <img src="assets/intro.png" alt="intro.png">
         </div>
-        <div class="banner scroll-reveal">
-            <div class="banner-text">
-                “Stories <img src="assets/stories.png" alt="stories"> are my <i>inspiration</i>, design is my voice. <img src="assets/kiss.png" alt="voices"><br>
-                I love shaping moments <img src="assets/moments.png" alt="moments"> into visuals that stay with people.<br>
-                My goal is to grow <img src="assets/grow.png" alt="grow"> as a designer who shapes ideas into impactful stories.<br>
-                Art direction and editorial design are the paths where I see my future. <img src="assets/future.png" alt="future">”
-            </div>
-        </div>
 
-        <div class="slideshow-container scroll-reveal">
-            <div class="slideshow-wrapper">
-                <div id="slideshowTrack" class="slideshow-track">
-                    <!-- Slides will be dynamically generated -->
-                </div>
+        <div style="margin-top: 40vh; display: flex; gap: 18px; margin-left: 20vw;">
+            <div style="display: flex; flex-direction: column; gap: 32px">
+                <div><img style="width: 36px; height: 36px; margin-top: 2px;" src="assets/star-white.svg" alt="start"></div>
+            </div>
+            <div class="bottom-nav">
+                <a href="index.html"><p class="hover-underline-animation left">Start</p></a>
+                <a href="aboutme.html"><p class="hover-underline-animation left">About me</p></a>
+                <a href="works.html"><p class="hover-underline-animation left">Works</p></a>
+                <a href="gallery.html"><p class="hover-underline-animation left">gallery</p></a>
+                <a href="contact.html"><p class="hover-underline-animation left">Contact</p></a>
             </div>
         </div>
         <footer>
-            <div class="slogan"><p>Annika.</p></div>
+            <div class="slogan">
+                <img src="assets/footertext.png" alt="footer text">
+            </div>
+            <div class="slogan"><p>annika.</p></div>
             <div class="socials">
                     <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                     <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
             </div>
         </footer>
     </div>
-    <script>
-        const imageSources = [
-            'assets/slide/slide1.jpg',
-            'assets/slide/slide2.jpg',
-            'assets/slide/slide3.jpg',
-            'assets/slide/slide4.jpg',
-            'assets/slide/slide5.jpg',
-            'assets/slide/slide6.jpg',
-            'assets/slide/slide7.jpg',
-            'assets/slide/slide8.jpg'
-        ];
-        
-        // Get the slideshow track element
-        const slideshowTrack = document.getElementById('slideshowTrack');
-        
-        // Create slides dynamically
-        function createSlides() {
-            // Create two sets of slides for infinite scroll
-            for (let set = 0; set < 2; set++) {
-                imageSources.forEach((src, index) => {
-                    const slideDiv = document.createElement('div');
-                    slideDiv.className = 'slide';
-                    
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = `Slide ${index + 1}`;
-                    img.className = 'slide-image';
-                    img.loading = 'lazy';
-                    
-                    slideDiv.appendChild(img);
-                    slideshowTrack.appendChild(slideDiv);
-                });
-            }
-        }
-        
-        // Initialize slides
-        createSlides();
-        
-        // Initialize position
-        let currentPosition = 0;
-        let animationId;
-        
-        // Calculate the width of one set of slides
-        function getSlideSetWidth() {
-            const slides = slideshowTrack.querySelectorAll('.slide');
-            const slideCount = slides.length / 2; // We have duplicates
-            if (slideCount === 0) return 0;
-            
-            const firstSlide = slides[0];
-            const computedStyle = window.getComputedStyle(slideshowTrack);
-            const gap = parseFloat(computedStyle.gap) || 32; // Default 2rem = 32px
-            
-            return (firstSlide.offsetWidth * slideCount) + (gap * (slideCount - 1));
-        }
-        
-        // Animation function
-        function animate() {
-            const slideSetWidth = getSlideSetWidth();
-            
-            // Move the slides
-            currentPosition -= 1; // Speed of sliding (pixels per frame)
-            
-            // Reset position when first set is completely out of view
-            if (Math.abs(currentPosition) >= slideSetWidth) {
-                currentPosition = 0;
-            }
-            
-            // Apply the transform
-            slideshowTrack.style.transform = `translateX(${currentPosition}px)`;
-            
-            // Continue animation
-            animationId = requestAnimationFrame(animate);
-        }
-        
-        // Start the animation when page loads
-        window.addEventListener('load', function() {
-            // Small delay to ensure layout and images are loaded
-            setTimeout(() => {
-                animationId = requestAnimationFrame(animate);
-            }, 100);
-        });
-        
-        // Clean up on page unload
-        window.addEventListener('unload', function() {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-        });
-        
-        // Handle window resize
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                // Recalculate on resize but don't reset position
-                // This ensures smooth continuation after resize
-            }, 250);
-        });
-    </script>
     <script>
         // Animation Controller
         const doorContainer = document.getElementById('door-container');

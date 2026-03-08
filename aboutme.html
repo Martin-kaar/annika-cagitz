@@ -56,6 +56,7 @@
 
         .nav-content {
             display: flex;
+            align-items: center;
             gap: 20px;
         }
 
@@ -163,13 +164,14 @@
         }
 
         .skills img {
-            width: 20vw;
+            width: 25vw;
             height: auto;
             object-fit: contain;
         }
 
         /* Footer */
-        .footer {
+        footer {
+            margin-top: 10vh;
             display: flex;
             width: 100%;
             flex-direction: column;
@@ -179,7 +181,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-transform: capitalize;
+            text-transform: none;
             font-size: 40px;
         }
 
@@ -303,6 +305,12 @@
                 margin: 15px;
             }
         }
+        .nav-star {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
@@ -310,7 +318,12 @@
         <nav>
             <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">annika.</p></a></div>
             <div class="nav-content">
-                <a href=""><p class="hover-underline-animation left highlight">ABOUT ME</p></a>
+                <a href="">
+                    <div class="nav-star">
+                        <div><img style="width: 36px; height: 36px; margin-top: 2px;" src="assets/star-black.svg" alt="start"></div>
+                        <p class="hover-underline-animation left highlight">ABOUT ME</p>
+                    </div>
+                </a>
                 <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
                 <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
             </div>
@@ -361,6 +374,7 @@
                    <img src="assets/experience.png" alt="experience Illustration">
             </div>
             <div class="skills scroll-reveal">
+                  <img src="assets/skills.png" alt="Skills Illustration">
                 <p>
                     <span style="font-size: 48px; font-weight: bold;">My Skills</span><br>
                     <strong>Photography & Storytelling</strong> - Capturing moments and creating visual narratives that engage and inspire<br>
@@ -377,11 +391,13 @@
                     <br>
                     <strong>Software & Tools</strong> - Adobe Illustrator, Photoshop, InDesign, After Effects, Premiere, Figma, Canva, DaVinci Resolve
                 </p>
-                <img src="assets/skills.png" alt="Skills Illustration">
             </div>
           </div>
           <footer>
-            <div class="slogan"><p>Annika.</p></div>
+            <div class="slogan">
+                <img src="assets/aboutme_footer.png" alt="footer text">
+            </div>
+            <div class="slogan"><p>annika.</p></div>
             <div class="socials">
                     <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                     <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>

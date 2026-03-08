@@ -47,6 +47,7 @@
 
         .nav-content {
             display: flex;
+            align-items: center;
             gap: 20px;
         }
 
@@ -86,7 +87,8 @@
 
         
         /* Footer */
-        .footer {
+        footer {
+            margin-top: 150px;
             display: flex;
             width: 100%;
             flex-direction: column;
@@ -96,7 +98,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-transform: capitalize;
+            text-transform: none;
             font-size: 40px;
         }
 
@@ -134,6 +136,7 @@
             flex-direction: column;
             margin-top: 15px;
             justify-content: start;
+            gap: 5px;
             width: 100%;
         }
 
@@ -150,13 +153,11 @@
 
         .image-wrapper {
             overflow: hidden;
-            border-radius: 30px;
             height: 400px;
             cursor: url('assets/cursor.svg'), auto;
         }
 
         .image-wrapper img {
-            border-radius: 30px;
             height: 400px;
             object-fit: cover;
             transition: all .3s ease;
@@ -211,6 +212,12 @@
                 height: auto;
             }
         }
+             .nav-star {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
     <script>
@@ -227,7 +234,12 @@
             <div class="nav-logo"><a href="index.html"><p class="hover-underline-animation left">annika</p></a></div>
             <div class="nav-content">
                 <a href="aboutme.html"><p class="hover-underline-animation left">ABOUT ME</p></a>
-                <a href="works.html"><p class="hover-underline-animation left highlight">WORKS</p></a>
+                <a href="">
+                    <div class="nav-star">
+                        <div><img style="width: 36px; height: 36px; margin-top: 2px;" src="assets/star-white.svg" alt="start"></div>
+                        <p class="hover-underline-animation left highlight">WORKS</p>
+                    </div>
+                </a>
                 <a href="gallery.html"><p class="hover-underline-animation left">GALLERY</p></a>
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
@@ -261,36 +273,12 @@
                 </div>
             </div>
             <div class="work scroll-reveal">
-                <div onclick="navigateToWork('nogo')" class="image-wrapper">
-                    <img src="assets/works/nogo.png">
-                </div>
-                <div class="work-description">
-                    <h1>My NoGo’s</h1>
-                    <p>What I really don’t like.</p>
-                </div>
-            </div>
-            <div class="work scroll-reveal">
-                <div onclick="navigateToWork('portrait')" class="image-wrapper">
-                    <img src="assets/works/portrait.png">
-                </div>
-                <div class="work-description">
-                    <h1>Portrait photography</h1>
-                </div>
-            </div>
-            <div class="work scroll-reveal">
-                <div onclick="navigateToWork('baerbel')" class="image-wrapper">
-                    <img src="assets/works/baerbel.png">
-                </div>
-                <div class="work-description">
-                    <h1>Branding for Bärbel’s Creative World</h1>
-                </div>
-            </div>
-            <div class="work scroll-reveal">
                 <div onclick="navigateToWork('food')" class="image-wrapper">
                     <img src="assets/works/food.png">
                 </div>
                 <div class="work-description">
                     <h1>Food photography</h1>
+                    <p>Combining two of my true loves, food and photography.</p>
                 </div>
             </div>
             <div class="work scroll-reveal">
@@ -312,12 +300,12 @@
                 </div>
             </div>
             <div class="work scroll-reveal">
-                <div onclick="navigateToWork('flower')" class="image-wrapper">
-                    <img src="assets/works/flower.png">
+                <div onclick="navigateToWork('motiondesign')" class="image-wrapper">
+                    <img src="assets/works/motiondesign.png">
                 </div>
                 <div class="work-description">
                     <h1>Motion Design</h1>
-                    <p>In process ...</p>
+                    <p>My Motion Design Projects</p>
                 </div>
             </div>
              <div class="work scroll-reveal">
@@ -329,9 +317,39 @@
                     <p>A maternity photoshoot capturing the beauty, intimacy, and anticipation of pregnancy.</p>
                 </div>
             </div>
+            <div class="work scroll-reveal">
+                <div onclick="navigateToWork('nogo')" class="image-wrapper">
+                    <img src="assets/works/nogo.png">
+                </div>
+                <div class="work-description">
+                    <h1>My NoGo’s</h1>
+                    <p>What I really don’t like.</p>
+                </div>
+            </div>
+            <div class="work scroll-reveal">
+                <div onclick="navigateToWork('typo')" class="image-wrapper">
+                    <img src="assets/works/typo.png">
+                </div>
+                <div class="work-description">
+                    <h1>Typography Leaffont</h1>
+                    <p>My own Typeface out of Leafs.</p>
+                </div>
+            </div>
+            <div class="work scroll-reveal">
+                <div onclick="navigateToWork('shifting')" class="image-wrapper">
+                    <img src="assets/works/shifting.png">
+                </div>
+                <div class="work-description">
+                    <h1>Shifting Dialouges</h1>
+                    <p>A ficitve festival about dialouge and communication.</p>
+                </div>
+            </div>
         </div>
           <footer>
-            <div class="slogan"><p>Annika.</p></div>
+            <div class="slogan">
+                <img src="assets/works/footer_text.png" alt="footer text">
+            </div>
+            <div class="slogan"><p>annika.</p></div>
             <div class="socials">
                     <a href="https://www.instagram.com/annikastefanie/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.png" alt="instagram"></a>
                     <a href="https://www.linkedin.com/in/annika-cagitz-b35565358/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedIn.png" alt="linkedIn"></a>
