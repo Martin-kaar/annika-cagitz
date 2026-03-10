@@ -111,6 +111,7 @@
 
       /* Footer */
       footer {
+        margin-top: 100px;
         display: flex;
         width: 100%;
         flex-direction: column;
@@ -198,9 +199,6 @@
                     <img style="width:35vw" src="assets/work/jazz/5.png" />
                     <img style="width:25vw" src="assets/work/jazz/6.png" />
                 </div>
-                <div style="margin-top: 150px; display: flex; justify-content: center; align-items: center;">
-                    <img src="assets/work/jazz/footertext.png" />
-                </div>
                 `,
         },
         gaze: {
@@ -242,6 +240,7 @@
                     <img style="width:22.5vw" src="assets/work/time/9.png" />
                     <img style="width:22.5vw" src="assets/work/time/10.png" />
                     <img style="width:22.5vw" src="assets/work/time/11.png" />
+                    <div style="width:22.5vw"></div>
                 </div>
                 `,
         },
@@ -257,27 +256,32 @@
                 </div>
                 `,
         },
-        portrait: {
-          title: "Portrait photography",
-          description: "",
-          imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 10px;">
-                    <img style="width:40vw" src="assets/work/portrait/1.png" />
-                    <img style="width:40vw"src="assets/work/portrait/2.png" />
-                    <img style="width:40vw" src="assets/work/portrait/3.png" />
-                    <img style="width:40vw" src="assets/work/portrait/4.png" />
-                </div>
-                `,
-        },
-        baerbel: {
-          title: "Branding for Bärbel’s Creative World",
+        motiondesign: {
+          title: "Motion Design",
           description:
-            "Logo and Card Design for a Small Crochet Brand - A playful logo featuring a pink heart made of yarn and a crochet hook — expressing warmth, creativity, and love for handmade craft.",
+            "These are my motion design works. I’m getting better and better at it, and I really enjoy the process. From geometric motion studies to a poster animation and the square project we did in class, I have already gained a lot of experience. I’m excited to continue learning and developing more knowledge in this field.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
-                    <img style="width:42.5vw" src="assets/work/baerbel/1.png" />
-                    <img style="width:42.5vw" src="assets/work/baerbel/2.png" />
-                    <img style="width:42.5vw" src="assets/work/baerbel/3.png" />
+                <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: center; gap: 10vh;">
+                    <video style="width: 100%; width="100%" autoplay muted loop>
+                        <source src="assets/work/motiondesign/1.mp4" type="video/mp4">
+                         Your browser does not support the video tag. Please update your browser to view this content.
+                    </video>
+                    <div style="display: flex; justify-content: space-between;">
+                    <video style="width: 40vw;" width="100%" autoplay muted loop>
+                        <source src="assets/work/motiondesign/2.mp4" type="video/mp4">
+                         Your browser does not support the video tag. Please update your browser to view this content.
+                    </video>
+                    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                      <video style="width: 45vw;" width="100%" autoplay muted loop>
+                        <source src="assets/work/motiondesign/3.mp4" type="video/mp4">
+                         Your browser does not support the video tag. Please update your browser to view this content.
+                      </video>
+                      <video style="width: 45vw;"" width="100%" autoplay muted loop>
+                        <source src="assets/work/motiondesign/4.mp4" type="video/mp4">
+                         Your browser does not support the video tag. Please update your browser to view this content.
+                      </video>
+                    </div>
+                    </div>
                 </div>
                 `,
         },
@@ -352,11 +356,14 @@
         new URLSearchParams(window.location.search).get("work") ?? "default";
       let work = workData[currentWork];
 
+      document.getElementById("footer-img").src = `assets/work/${currentWork}/footertext.png`;
+
       if (
         currentWork === "jazz" ||
         currentWork === "nogo" ||
         currentWork === "portrait" ||
-        currentWork === "food"
+        currentWork === "food" ||
+        currentWork === "motiondesign"
       ) {
         let body = document.getElementsByTagName("body")[0];
         let nav = document.getElementsByTagName("nav")[0];
@@ -431,7 +438,7 @@
       </div>
       <footer>
         <div class="slogan">
-            <img src="assets/work/gaze/footertext.png" alt="footer text">
+            <img id="footer-img" alt="footer text">
         </div>
         <div class="slogan"><p>annika.</p></div>
         <div class="socials">
