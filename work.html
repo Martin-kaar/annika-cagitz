@@ -176,6 +176,14 @@
           gap: 30px;
         }
 
+        .wrap {
+          flex-wrap: wrap;
+        }
+
+        footer img {
+                max-width: 100vw;
+            }
+
         img {
           width: 100% !important;
           height: auto !important;
@@ -191,7 +199,7 @@
           description:
             "As part of a design competition within our degree program, I developed a visual concept for the Saalfelden Jazz Festival. <br><br>My initial approach was inspired by the map of Saalfelden, representing place, connection, and local identity.<br>The core idea, however, evolved from the imagery of footprints as a metaphor for diversity, togetherness, dance, and joy. The design translates the movement and rhythm of jazz into a dynamic visual language.<br><br>The concept was produced in multiple formats and was awarded second place in the competition.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-between; gap: 50px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: space-between; gap: 50px;">
                     <img style="width:90vw" src="assets/work/jazz/1.png" />
                     <img style="width:43vw" src="assets/work/jazz/2.png" />
                     <img style="width:43vw" src="assets/work/jazz/3.png" />
@@ -206,11 +214,11 @@
           description:
             "The project explores the phenomenon of the “male gaze” and the everyday objectification of women.<br>Through individually designed buttons placed deliberately at key points of view, a visual dialogue around the topic emerges.<br>Each design becomes a statement of self-determination, visibility, and boundaries. Wordless, yet powerfully clear.",
           imageHtml: `
-          <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; ">
                 <img style="width:44vw; max-height: 550px; object-fit: contain;" src="assets/work/gaze/head.png" />
                 <img style="width:44vw; max-height: 550px; object-fit: contain;" src="assets/work/gaze/button.png" />
             </div>
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-between; width:70vw; margin: 70px 10vw">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: space-between; width:70vw; margin: 70px 10vw">
                     <img style="width:23vw" src="assets/work/gaze/1.png" />
                     <img style="width:23vw" src="assets/work/gaze/2.png" />
                     <img style="width:23vw" src="assets/work/gaze/3.png" />
@@ -228,7 +236,7 @@
           description:
             "A poster series exploring the concept of time through black, white, and red. Each poster represents a different aspect or perception of time, using bold contrasts and minimalist design to create a striking visual narrative.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: center; gap: 50px;">
                     <img style="width:22.5vw" src="assets/work/time/1.png" />
                     <img style="width:22.5vw" src="assets/work/time/2.png" />
                     <img style="width:22.5vw" src="assets/work/time/3.png" />
@@ -249,7 +257,7 @@
           description:
             "A visual exploration of three personal “no-gos”. Ghosting in our digital society, the screeching sound of a plate or blackboard, and animal cruelty. Each poster approaches its topic with a distinct visual language, reflecting emotional reactions from discomfort to rejection.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: center; gap: 50px;">
                     <img style="width:22.5vw" src="assets/work/nogo/1.png" />
                     <img style="width:22.5vw" src="assets/work/nogo/2.png" />
                     <img style="width:22.5vw" src="assets/work/nogo/3.png" />
@@ -261,7 +269,7 @@
           description:
             "These are my motion design works. I’m getting better and better at it, and I really enjoy the process. From geometric motion studies to a poster animation and the square project we did in class, I have already gained a lot of experience. I’m excited to continue learning and developing more knowledge in this field.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: center; gap: 10vh;">
+                <div class="wrap" style="display: flex;  flex-direction: column; justify-content: center; gap: 10vh;">
                     <video style="width: 100%; width="100%" autoplay muted loop>
                         <source src="assets/work/motiondesign/1.mp4" type="video/mp4">
                          Your browser does not support the video tag. Please update your browser to view this content.
@@ -285,11 +293,40 @@
                 </div>
                 `,
         },
+        typo: {
+          title: "Typography: Leafline",
+          description:
+            "The brief was to design a typeface that represents who we are. I wanted to create something rhythmic, natural, and playful. Inspired by a walk through the forest, I developed a leaf-inspired typeface built from oval shapes that create a flowing, almost musical rhythm. Since rhythm and dance are an important part of my life, I also translated this visual rhythm into compositions using real leaves. This project explores the connection between nature, movement, and typography.",
+          imageHtml: `
+                <div class="wrap" style="display: flex;  flex-direction: column; justify-content: center; gap: 50px;">
+                    <img style="width: 100%" src="assets/work/typo/head.png" />
+                    <video style="width: 100%; width="100%" autoplay muted loop>
+                        <source src="assets/work/typo/video.mp4" type="video/mp4">
+                         Your browser does not support the video tag. Please update your browser to view this content.
+                    </video>
+                    <img style="width: 100%" src="assets/work/typo/typeface1.png" />
+                    <div class="wrap" style="display: flex; justify-content: space-between; ">
+                      <img style="width:39.5%" src="assets/work/typo/mockup1.png" />
+                      <img style="width:59.5%" src="assets/work/typo/mockup2.png" />
+                    </div>
+                    <div class="wrap" style="display: flex; justify-content: space-between; ">
+                      <img style="width:29.5%" src="assets/work/typo/mockup3.png" />
+                      <img style="width:69.5%" src="assets/work/typo/mockup4.png" />
+                    </div>
+                    <img style="width:100%" src="assets/work/typo/typeface2.png" />
+                    <div class="wrap" style="display: flex; justify-content: space-between; ">
+                      <img style="width:29.9%" src="assets/work/typo/mockup5.png" />
+                      <img style="width:39.5%" src="assets/work/typo/mockup6.png" />
+                      <img style="width:29.5%" src="assets/work/typo/mockup7.png" />
+                    </div>
+                </div>
+                `,
+        },
         food: {
           title: "Food Photography",
           description: "",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 20px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: center; gap: 20px;">
                     <img style="width:42.5vw" src="assets/work/food/1.png" />
                     <img style="width:42.5vw" src="assets/work/food/2.png" />
                     <img style="width:42.5vw" src="assets/work/food/3.png" />
@@ -304,7 +341,7 @@
           description:
             "Redesign of the Gasthaus Cagitz website with a fresh, modern interface and new photography that captures the cozy atmosphere and authentic charm of the restaurant.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 50px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: center; gap: 50px;">
                     <img style="width: 85vw" src="assets/work/website/1.png" />
                     <img style="width:41vw" src="assets/work/website/2.png" />
                     <img style="width:41vw" src="assets/work/website/3.png" />
@@ -321,16 +358,67 @@
           description:
             "A professional photoshoot with Austrian national skater Hannah Frank, capturing the grace, power, and elegance of figure skating. The images highlight movement, expression, and the artistry of the sport.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; gap: 20px;">
-                    <img style="width:27.5vw" src="assets/work/ice/1.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/2.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/3.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/4.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/5.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/6.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/7.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/8.png" />
-                    <img style="width:27.5vw" src="assets/work/ice/9.png" />
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 25px;">
+                  <div class="wrap" style="display: flex;  flex-direction: row; justify-content: center; gap: 20px;">
+                      <img style="width:27.5vw" src="assets/work/ice/1.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/2.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/3.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/4.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/5.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/6.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/7.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/8.png" />
+                      <img style="width:27.5vw" src="assets/work/ice/9.png" />
+                  </div>
+                  <div class="wrap" style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30vh; ">
+                    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 450px;">
+                      <h1 style="font-size: 40px; font-weight: 400;">Jonathan and<br>Raphaela Aschl</h1>
+                      <p style="font-size: 20px; font-weight: 300;">A photoshoot with Austrian national skaters and siblings Jonathan and Raphaela Aschl. They are Austria’s national youth champions in pair skating and are always exciting to watch on the ice. It was a great experience and a lot of fun to work with them on this shoot.</p>
+                    </div>
+                    <img style="width: 100%; object-fit: contain; max-width: 50vw" src="assets/work/ice/portraits.png" />
+                  </div>
+                  <img style="width: 100%; object-fit: contain;" src="assets/work/ice/book.png" />
+                  <div class="wrap" style="display: flex; justify-content: space-between; ">
+                      <img style="width:59.5%" src="assets/work/ice/bild1.png" />
+                      <img style="width:39.5%" src="assets/work/ice/bild2.png" />
+                    </div>
+                  <div class="wrap" style="display: flex; justify-content: space-between; ">
+                    <img style="width:69.5%" src="assets/work/ice/bild3.png" />
+                    <img style="width:29.5%" src="assets/work/ice/bild4.png" />
+                  </div>
+                  <div class="wrap" style="display: flex; justify-content: space-between; ">
+                    <img style="width:39.5%" src="assets/work/ice/bild5.png" />
+                    <img style="width:59.5%" src="assets/work/ice/bild6.png" />
+                  </div>
+                </div>
+                `,
+        },
+        shifting: {
+          title: "Shifting Dialouges",
+          description:
+            "A fictitious festival about conversation and dialogue. After a lot of brainstorming, I decided to return to my first idea: the shift key as a symbol of change, growth, and transformation. The arrows represent the variety of people and their different perspectives coming together.",
+          imageHtml: `
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 25px;">
+                  <img style="width: 75%; object-fit: contain; margin: auto;" src="assets/work/shifting/head.png" />
+                  <div class="wrap" style="display: flex; justify-content: center; gap: 30px; ">
+                      <img style="width:44%" src="assets/work/shifting/bild1.png" />
+                      <img style="width:54%" src="assets/work/shifting/bild2.png" />
+                    </div>
+                  <div class="wrap" style="display: flex; justify-content: center; gap: 30px; ">
+                    <img style="width:39.5%" src="assets/work/shifting/bild3.png" />
+                    <img style="width:59.5%" src="assets/work/shifting/bild4.png" />
+                  </div>
+                  <div class="wrap" style="display: flex; justify-content: center; gap: 30px; ">
+                    <img style="width:34.5%" src="assets/work/shifting/bild5.png" />
+                    <img style="width:29.5%" src="assets/work/shifting/bild6.png" />
+                    <img style="width:34.5%" src="assets/work/shifting/bild7.png" />
+                  </div>
+                  <img style="width: 100%; object-fit: contain; margin: auto;" src="assets/work/shifting/merch.png" />
+                  <div class="wrap" style="display: flex; justify-content: space-between; ">
+                      <img style="width:70%; object-fit: contain;" src="assets/work/shifting/smartphone.png" />
+                      <img style="width:70%; object-fit: contain;" src="assets/work/shifting/mockup1.png" />
+                      <img style="width:70%; object-fit: contain;" src="assets/work/shifting/mockup2.png" />
+                  </div>
                 </div>
                 `,
         },
@@ -339,7 +427,7 @@
           description:
             "A maternity photoshoot capturing the beauty, intimacy, and anticipation of pregnancy. Focused on natural poses, soft lighting, and emotional connection to highlight this special moment in life.",
           imageHtml: `
-                <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-between; gap: 50px;">
+                <div class="wrap" style="display: flex;  flex-direction: row; justify-content: space-between; gap: 50px;">
                     <img style="width:27.5vw" src="assets/work/baby/1.png" />
                     <img style="width:27.5vw" src="assets/work/baby/2.png" />
                     <img style="width:27.5vw" src="assets/work/baby/3.png" />
