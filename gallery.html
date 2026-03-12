@@ -19,7 +19,7 @@
         #main-content {
             position: relative;
             min-height: 100vh;
-            padding: 20px 20px 0 20px;
+            padding: 0 20px 0 20px;
             z-index: 10;
         }
 
@@ -45,6 +45,7 @@
 
         .nav-content {
             display: flex;
+            align-items: center;
             gap: 20px;
         }
 
@@ -188,6 +189,12 @@
   justify-self: center;
             }
         }
+                .nav-star {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
@@ -197,7 +204,12 @@
             <div class="nav-content">
                 <a href="aboutme.html"><p class="hover-underline-animation left">ABOUT ME</p></a>
                 <a href="works.html"><p class="hover-underline-animation left">WORKS</p></a>
-                <a href="gallery.html"><p class="hover-underline-animation left highlight">GALLERY</p></a>
+                  <a href="">
+                    <div class="nav-star">
+                        <div><img style="width: 36px; height: 36px; margin-top: 2px;" src="assets/star-black.svg" alt="start"></div>
+                        <p class="hover-underline-animation left highlight">GALLERY</p>
+                    </div>
+                </a>
             </div>
             <div class="nav-contact"><a href="contact.html"><p class="hover-underline-animation left">CONTACT</p></a></div>
         </nav>
